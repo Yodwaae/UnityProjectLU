@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -24,11 +25,13 @@ public class SettingsMenu : MonoBehaviour
         soundsAudioMixer.SetFloat("SoundsVolume", soundsVolume);
     }
 
+    //Met le jeu en plein écran
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
     }
 
+    //Permet de choisir une résolution
     public void SetResolution(int resolutionIndex)
     {
         Resolution resolution = resolutions[resolutionIndex];
@@ -40,8 +43,9 @@ public class SettingsMenu : MonoBehaviour
     public void Start()
     {
         //Paramètre de résolution de l'écran du joueur
-            resolutions = Screen.resolutions;
-            resolutionsDropdown.ClearOptions();
+        //permet de ne pas avoir plusieurs fois les mêmes résolutions
+        resolutions = Screen.resolutions.Select(Resolution => new Resolution { width = Resolution.width, height = Resolution.height }).Distinct().ToArray();
+        resolutionsDropdown.ClearOptions();
 
             int currentResolutionIndex = 0;
 
