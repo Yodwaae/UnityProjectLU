@@ -111,7 +111,7 @@ public class Shooting : MonoBehaviour
 
     void ShootWP3()//Fonction de tir du fusil à pompe
     {
-        //Tire quatre balle simultanément
+        //Tire quatre balle simultanément (penser à mettre des angles différents)
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
