@@ -67,7 +67,7 @@ public class SpawnEnemy : MonoBehaviour
     /*Méthode qui sert de tampon évitant que la coroutine SpawnAnEnnemy tourne en continue
      permettant ainsi de changer les valeurs des variables utilisées dans la coroutine 
     pendant le laps de temps durant lequel elle est à l'arrêt*/
-    private void BufferEnemy()
+    private void  BufferEnemy()
     {
         StartCoroutine(SpawnAnEnemy());//Relance la coroutine
     }
