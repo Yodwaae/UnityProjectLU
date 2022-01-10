@@ -26,16 +26,11 @@ public class Interface : MonoBehaviour
         scoreEnemy.text = "Ennemis : " + countScoreEnemy.ToString();// Met à jour le texte de score
 
         //Mise à jour des spawn des ennemis
-        spawnEnemy.UpdateSpawnerE();//Appelle l'update Spawner quand le score est mis à jour plutôt que à charque frame
+        spawnEnemy.UpdateSpawnerE(countScoreEnemy);//Appelle l'update Spawner quand le score est mis à jour plutôt que à charque frame
     }
     public void SetScoreAlly()
     {
         countScoreAlly += 10;
         scoreAlly.text = "Alliés : " + countScoreAlly.ToString();// Met à jour le texte de score
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

@@ -8,13 +8,13 @@ public class SpawnEnemy : MonoBehaviour
     [SerializeField]//permet d'accéder à la variable dans l'éditeur tout en là laissant privée
     private float spawnRadius = 7;//Rayon d'apparition des ennemis
 
-    private float timeE; //temps entre l'apparation des ennemis
+    private float timeE; //temps entre l'apparition des ennemis
 
     private GameObject[] enemies;//Déclare la liste des ennemis à spawner
     public GameObject player; //Référence au joueur
     public GameObject Enemy1;//Référence à l'ennemi 1
     public GameObject Enemy2;//Référence à l'ennemi 2
-    private int score;//Déclare le score (mettre à jour dans le on destroy de l'ennemi) Tuer un allié baisse score ??
+    //private int score;//Déclare le score (mettre à jour dans le on destroy de l'ennemi) Tuer un allié baisse score ??
     //public Text scoreText;//Crée la variable de texte pour afficher le score
 
     // Start is called before the first frame update
@@ -28,10 +28,11 @@ public class SpawnEnemy : MonoBehaviour
         StartCoroutine(SpawnAnEnemy());//Lance le spawn d'ennemi pour la première fois
     }
 
-    public void UpdateSpawnerE()
+    public void UpdateSpawnerE(int score)
     {
         if (score > 100 && score < 250) //Valeur de score arbitraire, si le score atteint XX change les caractéristiques du spawner
         {
+            Debug.Log("100");
             //Modifie la liste d'ennemi avec un répartition de 70% Enemy1 et 30% Enemy2
             enemies = new GameObject[] { Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy2, Enemy2, Enemy2 };
             timeE = 2f;//Change le délai entre les spawns à 2s

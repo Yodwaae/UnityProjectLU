@@ -5,9 +5,9 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     [SerializeField]
-    private int vie;//Crée la variable de vie du joueur
+    private int vie;//Créer la variable de vie du joueur
     public GameObject gManager;//Créer la référence au GameManager
-    private SpawnAllies allySpawner;//Crée la référence au spawner allié
+    private SpawnAllies allySpawner;//Créer la référence au spawner allié
     public UnityEngine.Experimental.Rendering.Universal.Light2D lightPlayer;
 
     private void Awake()

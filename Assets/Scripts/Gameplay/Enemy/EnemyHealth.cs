@@ -8,7 +8,7 @@ public class EnemyHealth : MonoBehaviour
     private int vie;//Créer la variable de vie de l'ennemi
     private Interface UI;
     private GameObject gManager;//Créer la référence au GameManager
-    static int nbrKillEnemy;
+    private static int nbrKillEnemy;
     //private SpawnEnemy scoreGame;//Créer la référence pour modifier le score jr
    
 
