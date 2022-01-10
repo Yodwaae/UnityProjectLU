@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpawnEnnemyAndScore : MonoBehaviour
+public class SpawnEnemy : MonoBehaviour
 {
     [SerializeField]//permet d'accéder à la variable dans l'éditeur tout en là laissant privée
     private float spawnRadius = 7;//Rayon d'apparition des ennemis
@@ -20,16 +20,15 @@ public class SpawnEnnemyAndScore : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-
         timeE = 2.5f;//Initialise la variable de délai
         //scoreText.text = "SCORE : " + score.ToString();// Initialise le texte de score
 
-        //Crée une liste d'ennemi avec un répartition de base de 90% Enemy1 et 10% Enemy2
+        //Créer une liste d'ennemi avec un répartition de base de 90% Enemy1 et 10% Enemy2
         enemies = new GameObject[] { Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy2 };
         StartCoroutine(SpawnAnEnemy());//Lance le spawn d'ennemi pour la première fois
     }
 
-    private void UpdateSpawnerE()
+    public void UpdateSpawnerE()
     {
         if (score > 100 && score < 250) //Valeur de score arbitraire, si le score atteint XX change les caractéristiques du spawner
         {

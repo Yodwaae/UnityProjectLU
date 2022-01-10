@@ -14,6 +14,7 @@ TagManager:
   - bullet
   - Ally2
   - GameManager
+  - Interface
   layers:
   - Default
   - TransparentFX

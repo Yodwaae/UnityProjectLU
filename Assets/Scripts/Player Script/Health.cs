@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
 
     private void Awake()
     {
-        allySpawner = gManager.GetComponent<SpawnAllies>();// NE FONCTIONNE PAS
+        allySpawner = gManager.GetComponent<SpawnAllies>();
     }
 
 

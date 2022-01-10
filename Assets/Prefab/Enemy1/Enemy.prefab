@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6882703719612904818}
   - component: {fileID: 4393099550922085251}
   - component: {fileID: -7560015023744264701}
-  - component: {fileID: -3284220589796174530}
+  - component: {fileID: 4854347185651327921}
   - component: {fileID: 5021961928239255931}
   m_Layer: 0
   m_Name: Enemy
@@ -126,7 +126,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   spriteRenderer: {fileID: 6882703719612904818}
---- !u!114 &-3284220589796174530
+--- !u!114 &4854347185651327921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,7 +138,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b66ab37b310f2c49837e46fc998c007, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vie: 1
+  vie: 0
+  UI: {fileID: 0}
 --- !u!95 &5021961928239255931
 Animator:
   serializedVersion: 3

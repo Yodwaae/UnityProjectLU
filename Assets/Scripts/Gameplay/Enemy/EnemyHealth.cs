@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemyHealth : MonoBehaviour
+public class EnemyHealth : MonoBehaviour
 {
     [SerializeField]//permet d'accéder à la variable dans l'éditeur tout en là laissant privée
-    private int vie;//Crée la variable de vie de l'ennemi
-    private GameObject gManager;//Crée la référence au GameManager
-    private SpawnEnnemyAndScore scoreGame;//Crée la référence pour modifier le score jr
+    private int vie;//Créer la variable de vie de l'ennemi
+    private Interface UI;
+    private GameObject gManager;//Créer la référence au GameManager
+    static int nbrKillEnemy;
+    //private SpawnEnemy scoreGame;//Créer la référence pour modifier le score jr
    
 
 
@@ -15,13 +17,14 @@ public class EnnemyHealth : MonoBehaviour
     private void Awake()
     {
         gManager = GameObject.FindGameObjectWithTag("GameManager");
-        scoreGame = gManager.GetComponent<SpawnEnnemyAndScore>();
+        UI = GameObject.FindGameObjectWithTag("Interface").GetComponent<Interface>();
+        //scoreGame = gManager.GetComponent<SpawnEnemy>();
     }
     void OnCollisionEnter2D(Collision2D collision)//Quand le joueur entre en collision
     {
         if (collision.gameObject.tag == "bullet" )//Si la collision est une balle
         {
-            //scoreGame.setScore();//Augmente le score du joueur
+            UI.SetScoreEnemy();//Augmente le score du joueur
             vie--;//Perd un de vie   
         }
     }
@@ -31,6 +34,7 @@ public class EnnemyHealth : MonoBehaviour
         {
             //Potentiellement une anim ?
             Destroy(gameObject);//Détruit l'ennemi
+            nbrKillEnemy++;
         }
     }
 }
