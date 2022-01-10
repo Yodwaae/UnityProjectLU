@@ -21,7 +21,7 @@ public class EnnemyHealth : MonoBehaviour
     {
         if (collision.gameObject.tag == "bullet" )//Si la collision est une balle
         {
-            scoreGame.setScore();//Augmente le score du joueur
+            //scoreGame.setScore();//Augmente le score du joueur
             vie--;//Perd un de vie   
         }
     }

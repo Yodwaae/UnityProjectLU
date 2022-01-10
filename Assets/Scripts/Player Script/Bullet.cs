@@ -21,10 +21,6 @@ public class Bullet : MonoBehaviour
             GameObject effect = Instantiate(hitEffect, transform.position, Quaternion.identity);
             Destroy(effect, 1f);//1f = temps avant destruction de l'effet
             Destroy(gameObject);//détruit la balle
-
-            /*Détruit l'objet touché si c'est un allié (inutile de leur mettre un script point de vie puisqu'il n'en ont qu'un
-             * et que leur mort n'impacte rien(si cela venait à changer il faudrait leur créer leur propre script de vie)*/
-            if (collision.gameObject.tag == "Ally" || collision.gameObject.tag == "Ally2") Destroy(collision.gameObject);
         }
         
     } 

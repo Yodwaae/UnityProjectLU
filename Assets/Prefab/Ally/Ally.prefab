@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3049045688578592757}
   - component: {fileID: -7956338005887788699}
   - component: {fileID: 2155098745918177871}
+  - component: {fileID: -250233477177970857}
   m_Layer: 0
   m_Name: Ally
   m_TagString: Ally
@@ -144,3 +145,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-250233477177970857
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7075173122566882092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb9fb03124ea0f94589c9c2980918dae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
