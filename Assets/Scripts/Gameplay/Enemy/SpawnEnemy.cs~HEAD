@@ -32,6 +32,7 @@ public class SpawnEnemy : MonoBehaviour
     {
         if (score > 100 && score < 250) //Valeur de score arbitraire, si le score atteint XX change les caractéristiques du spawner
         {
+            Debug.Log("100");
             //Modifie la liste d'ennemi avec un répartition de 70% Enemy1 et 30% Enemy2
             enemies = new GameObject[] { Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy2, Enemy2, Enemy2 };
             timeE = 2f;//Change le délai entre les spawns à 2s
@@ -67,7 +68,7 @@ public class SpawnEnemy : MonoBehaviour
     /*Méthode qui sert de tampon évitant que la coroutine SpawnAnEnnemy tourne en continue
      permettant ainsi de changer les valeurs des variables utilisées dans la coroutine 
     pendant le laps de temps durant lequel elle est à l'arrêt*/
-    private void BufferEnemy()
+    private void  BufferEnemy()
     {
         StartCoroutine(SpawnAnEnemy());//Relance la coroutine
     }
