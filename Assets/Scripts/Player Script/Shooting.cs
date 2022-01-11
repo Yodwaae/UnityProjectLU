@@ -15,6 +15,7 @@ public class Shooting : MonoBehaviour
     private float bulletSpeed;//Crée la variable responsable de la vitesse de la balle
     private float fireDelay;//Crée la variable qui sert à calculer le délais entre les tirs
     private int amunitions;//Crée la variable qui stock les munitions du joueurs
+    public MunitionBar munitionBar;
     private Transform weaponChild;
 
     void Awake()
@@ -23,9 +24,14 @@ public class Shooting : MonoBehaviour
         weaponEquipped = 0;//( 0 = arme de base, 1 = fusil d'assaut, 2 = fusil à pompe et 3 = mitrailleuse)
         fireRate = 0.4f;//0.4 pour l'arme de base, XX pour le fusil d'assaut, XX pour le fusil à pompe, XX pour la mitrailleuse
         bulletSpeed = 8f;//Initialise bulletSpeed
-        amunitions = 100;//Initialise le nb de balles du joueur
+        amunitions = 100;//Initialise le nb de balles du joueur (attention, correspond à la décrémentation de la bar de munition
+        munitionBar.SetMaxMunition(amunitions);//initialise la bar de munition
     }
 
+    private void Start()
+    {
+        
+    }
     // Update is called once per frame
     void Update()//Récupère les Inputs
     {
@@ -87,7 +93,9 @@ public class Shooting : MonoBehaviour
     {
         //tire une balle
         Shoot(bullet, firePoint.transform, new Vector3(0,0,0));
-        amunitions -= 1;//décremente les munitions de l'arme
+        Debug.Log("Pistolet classique : " + amunitions);
+        amunitions -= 4;//décremente les munitions de l'arme
+        munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
     }
     void ShootWP2()//Fonction de tir du fusil d'assaut
     {
@@ -106,7 +114,9 @@ public class Shooting : MonoBehaviour
         }
 
         StartCoroutine(TimeDelay());
-        amunitions -= 3;//décrémente les munitions de l'arme
+        Debug.Log("Fusil d'assaut : " + amunitions);
+        amunitions -= 8;//décrémente les munitions de l'arme
+        munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
     }
 
     void ShootWP3()//Fonction de tir du fusil à pompe
@@ -117,14 +127,18 @@ public class Shooting : MonoBehaviour
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
 
-        amunitions -= 4;//décrémente les munitions de l'arme
+        Debug.Log("Fusil à pompe : " + amunitions);
+        amunitions -= 12;//décrémente les munitions de l'arme
+        munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
     }
 
     void ShootWP4()//Fonction de tir de la mitrailleuse
     {
         //Tire une balle avec un spread random (entre -.2f et .2f)
         Shoot(bullet, firePoint.transform, new Vector3(Random.Range(-.2f, .2f), 0, 0));
-        amunitions -= 1;//décrémente les munitions de l'arme
+        Debug.Log("Mitrailleuse : " + amunitions);
+        amunitions -= 8;//décrémente les munitions de l'arme
+        munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
     }
 
     //Changement de couleur TEMPORAIRE pour TEST
@@ -134,7 +148,11 @@ public class Shooting : MonoBehaviour
         fireRate = fRate;
         weaponEquipped = weapon;
         amunitions = amun;
+        munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
         gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = weaponSprite;
         gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().color = weaponColor;//Changement de couleur TEMPORAIRE pour TEST
     }
+
+    /*PS : pour des raisons de praticité concernant la gestion de la barre de munition, la quantité de munition est de 100 pour toutes les armes MAIS les armes
+    ne se décharchent pas à la même vitesse et 1 balle dans le jeu représente 100/x avec x le nombre que l'on retire à la variable amunitions.*/
 }
