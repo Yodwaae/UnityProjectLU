@@ -18,9 +18,6 @@ public class Interface : MonoBehaviour
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
         spawnEnemy = gameManager.GetComponent<SpawnEnemy>();
-
-        Debug.Log(countScoreAlly);
-        Debug.Log(countScoreEnemy);
     }
 
     public void SetScoreEnemy()//Le code est relié à rien

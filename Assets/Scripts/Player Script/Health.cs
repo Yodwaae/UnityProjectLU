@@ -28,8 +28,7 @@ public class Health : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")//Si la collision est un ennemi
         {
             currentHealth --;//Perd un point de vie
-            Debug.Log(currentHealth);
-            healthBar.SetHealth(currentHealth);
+            healthBar.SetHealth(currentHealth); //fait diminuer la barre de vie
 
             Destroy(collision.gameObject);//Détruit l'ennemi (à remplacer par une anime puis détruire, comme pour les balles)
             /*Important de détruire l'objet tout de suite ou le joueur perd plusieurs hp avec le même ennemi
@@ -40,15 +39,13 @@ public class Health : MonoBehaviour
             lightPlayer.pointLightOuterRadius -= 1;
             lightPlayer.pointLightInnerRadius -= 1;
         }
-        else if (collision.gameObject.tag == "Ally" || collision.gameObject.tag == "Ally2")//Si la collision est un allié simple
+        else if (collision.gameObject.tag == "Ally")//Si la collision est un allié simple
         {
             if(currentHealth < 10) //pour éviter que la vie soit supérieur à la barre de vie
             {
                 currentHealth++;//Gagne un point de vie
-                Debug.Log(currentHealth);
-                healthBar.SetHealth(currentHealth);
+                healthBar.SetHealth(currentHealth);//fait augmenter la barre de vie
             }
-
 
             Destroy(collision.gameObject);//détruit l'allié
             allySpawner.UpdateSpawnerA();////Apelle l'update Spawner quand le joueur gagne de la vie plutôt quà chaque frame

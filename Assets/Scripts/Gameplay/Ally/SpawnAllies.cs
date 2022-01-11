@@ -8,7 +8,7 @@ public class SpawnAllies : MonoBehaviour
     private float spawnRadius = 7;//Rayon d'apparition des alliés,
     private float timeA; //temps entre l'apparation des alliés
 
-    private Health vieJoueur;//Crée la référence au script Health du joueur
+    private Health playerHealth;//Crée la référence au script Health du joueur
     private GameObject[] allies;//Déclare la liste des alliés à spawner
     public GameObject player; //Référence au joueur
     public GameObject Ally1;//Référence à l'allié 1
@@ -18,39 +18,40 @@ public class SpawnAllies : MonoBehaviour
     void Start()
     {
         timeA = 2.5f;
-        vieJoueur = player.GetComponent<Health>();
+        playerHealth = player.GetComponent<Health>();
         //Crée une liste d'allié avec un répartition de base de 50% Ally1 et 50% Ally2
-        allies = new GameObject[] { Ally1, Ally1, Ally1, Ally2, Ally2, Ally2 };
+        //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally2, Ally2, Ally2 };
+        allies = new GameObject[] { Ally1 };
         StartCoroutine(SpawnAnAlly());//Lance le spawn d'allié pour la première fois
     }
 
     public void UpdateSpawnerA()//Pour plus d'opti au lieu de fixedUpdate créer et appeler cette fonction à chaque fois que le joueur perd/gagne un hp
     {
-        if (vieJoueur.getCurrentHealth() < 3)
+        if (playerHealth.getCurrentHealth() < 3)
         {
             //Modifie la liste d'allié avec un répartition de base de 50% Ally1 et 50% Ally2
-            allies = new GameObject[] { Ally1, Ally1, Ally1, Ally2, Ally2, Ally2 };
+            //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally2, Ally2, Ally2 };
             timeA = 2f;//Change le délaire entre les spawns à 3s
         }
         //Valeur de vie arbitraire, si le score atteint XX change les caractéristiques du spawner
-        else if (vieJoueur.getCurrentHealth() >= 3 && vieJoueur.getCurrentHealth() < 5) 
+        else if (playerHealth.getCurrentHealth() >= 3 && playerHealth.getCurrentHealth() < 5) 
         {
             //Modifie la liste d'alliés avec un répartition de 66% Ally1 et 33% Ally2
-            allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally2, Ally2 };
+            //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally2, Ally2 };
             timeA = 3f;//Change le délai entre les spawns à 3s
         }
         //Valeur de vie arbitraire, si le score atteint XX change les caractéristiques du spawner
-        else if (vieJoueur.getCurrentHealth() >= 5 && vieJoueur.getCurrentHealth() < 10)
+        else if (playerHealth.getCurrentHealth() >= 5 && playerHealth.getCurrentHealth() < 10)
         {
             //Modifie la liste d'alliés avec un répartition de 84% Ally1 et 16% Ally2
-            allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally1, Ally2 };
+            //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally1, Ally2 };
             timeA = 4f;//Change le délai entre les spawns à 4s
         }
         //Valeur de vie arbitraire, si le score atteint XX change les caractéristiques du spawner
-        else if (vieJoueur.getCurrentHealth() > 10) 
+        else if (playerHealth.getCurrentHealth() > 10) 
         {
             //Modifie la liste d'alliés avec un répartition de 100% Ally1 et 0% Ally2
-            allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally1, Ally1 };
+            //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally1, Ally1 };
             timeA = 5f;//Change le délai entre les spawns à 5s
         }
     }
