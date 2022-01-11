@@ -16,9 +16,7 @@ public class EnemyHealth : MonoBehaviour
 
     private void Start()
     {
-        //gManager = GameObject.FindGameObjectWithTag("GameManager");
         UI = GameObject.FindGameObjectWithTag("Interface").GetComponent<Interface>();
-        //scoreGame = gManager.GetComponent<SpawnEnemy>();
     }
     void OnCollisionEnter2D(Collision2D collision)//Quand le joueur entre en collision
     {

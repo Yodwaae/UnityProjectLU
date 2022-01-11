@@ -14,14 +14,12 @@ public class SpawnEnemy : MonoBehaviour
     public GameObject player; //Référence au joueur
     public GameObject Enemy1;//Référence à l'ennemi 1
     public GameObject Enemy2;//Référence à l'ennemi 2
-    //private int score;//Déclare le score (mettre à jour dans le on destroy de l'ennemi) Tuer un allié baisse score ??
-    //public Text scoreText;//Crée la variable de texte pour afficher le score
+
 
     // Start is called before the first frame update
     void Start()
     {
         timeE = 2.5f;//Initialise la variable de délai
-        //scoreText.text = "SCORE : " + score.ToString();// Initialise le texte de score
 
         //Créer une liste d'ennemi avec un répartition de base de 90% Enemy1 et 10% Enemy2
         enemies = new GameObject[] { Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy1, Enemy2 };
@@ -60,7 +58,6 @@ public class SpawnEnemy : MonoBehaviour
 
         Instantiate(enemies[Random.Range(0, enemies.Length)], spawnPos, Quaternion.identity);
         yield return new WaitForSeconds(timeE);//Attends un délai avant de rappeler la fonction
-        //Debug.Log(Time.time);//A enlever quand on aura vérifier que tout fonctionne parfaitement
         BufferEnemy();//Appel de la méthode Tampon
     }
 
@@ -71,16 +68,4 @@ public class SpawnEnemy : MonoBehaviour
     {
         StartCoroutine(SpawnAnEnemy());//Relance la coroutine
     }
-
-
- 
-    /*public void setScore()
-    {
-        score += 10;//Ajoute 10 au score à chaque fois la fonction est appelée
-        //C'est un peu brut mais de toute façon le score a pas besoin d'être hyper développé
-        scoreText.text = "SCORE : " + score.ToString();// Met à jour le texte de score
-
-        
-        UpdateSpawnerE();//Apelle l'update Spawner quand le score est mis à jour plutôt que à charque frame 
-    }*/
 }
