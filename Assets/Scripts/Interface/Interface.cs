@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class Interface : MonoBehaviour
 {
-    public SpawnEnemy spawnEnemy;
+    private SpawnEnemy spawnEnemy;
 
-    public GameObject gameManager;
+    private GameObject gameManager;
     public Text scoreEnemy;
     public Text scoreAlly;
     private int countScoreEnemy;
@@ -17,6 +17,10 @@ public class Interface : MonoBehaviour
     private void Awake()
     {
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
+        spawnEnemy = gameManager.GetComponent<SpawnEnemy>();
+
+        Debug.Log(countScoreAlly);
+        Debug.Log(countScoreEnemy);
     }
 
     public void SetScoreEnemy()//Le code est relié à rien

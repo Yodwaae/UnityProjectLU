@@ -18,7 +18,7 @@ public class SpawnEnemy : MonoBehaviour
     //public Text scoreText;//Crée la variable de texte pour afficher le score
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         timeE = 2.5f;//Initialise la variable de délai
         //scoreText.text = "SCORE : " + score.ToString();// Initialise le texte de score

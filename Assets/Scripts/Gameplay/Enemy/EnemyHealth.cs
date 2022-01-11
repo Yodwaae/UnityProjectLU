@@ -14,18 +14,18 @@ public class EnemyHealth : MonoBehaviour
 
 
 
-    private void Awake()
+    private void Start()
     {
-        gManager = GameObject.FindGameObjectWithTag("GameManager");
+        //gManager = GameObject.FindGameObjectWithTag("GameManager");
         UI = GameObject.FindGameObjectWithTag("Interface").GetComponent<Interface>();
         //scoreGame = gManager.GetComponent<SpawnEnemy>();
     }
     void OnCollisionEnter2D(Collision2D collision)//Quand le joueur entre en collision
     {
-        if (collision.gameObject.tag == "bullet" )//Si la collision est une balle
+        if (collision.gameObject.tag == "bullet")//Si la collision est une balle
         {
             UI.SetScoreEnemy();//Augmente le score du joueur
-            vie--;//Perd un de vie   
+            vie--;//Perd un de vie
         }
     }
     private void Update()

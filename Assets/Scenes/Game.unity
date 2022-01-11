@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367c0ea0df66c264ba64284f36602e1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnEnemy: {fileID: 7652522580990179823}
+  spawnEnemy: {fileID: 0}
   gameManager: {fileID: 7652522580990179822}
   scoreEnemy: {fileID: 1078176722}
   scoreAlly: {fileID: 760242693}
@@ -1326,9 +1326,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7652522580990179820}
-  - component: {fileID: 7652522580990179823}
   - component: {fileID: 7652522580990179821}
   - component: {fileID: 7652522580990179810}
+  - component: {fileID: 7652522580990179823}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
