@@ -26,28 +26,28 @@ public class SpawnAllies : MonoBehaviour
 
     public void UpdateSpawnerA()//Pour plus d'opti au lieu de fixedUpdate créer et appeler cette fonction à chaque fois que le joueur perd/gagne un hp
     {
-        if (vieJoueur.getVie() < 3)
+        if (vieJoueur.getCurrentHealth() < 3)
         {
             //Modifie la liste d'allié avec un répartition de base de 50% Ally1 et 50% Ally2
             allies = new GameObject[] { Ally1, Ally1, Ally1, Ally2, Ally2, Ally2 };
             timeA = 2f;//Change le délaire entre les spawns à 3s
         }
         //Valeur de vie arbitraire, si le score atteint XX change les caractéristiques du spawner
-        else if (vieJoueur.getVie() >= 3 && vieJoueur.getVie() < 5) 
+        else if (vieJoueur.getCurrentHealth() >= 3 && vieJoueur.getCurrentHealth() < 5) 
         {
             //Modifie la liste d'alliés avec un répartition de 66% Ally1 et 33% Ally2
             allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally2, Ally2 };
             timeA = 3f;//Change le délai entre les spawns à 3s
         }
         //Valeur de vie arbitraire, si le score atteint XX change les caractéristiques du spawner
-        else if (vieJoueur.getVie() >= 5 && vieJoueur.getVie() < 10)
+        else if (vieJoueur.getCurrentHealth() >= 5 && vieJoueur.getCurrentHealth() < 10)
         {
             //Modifie la liste d'alliés avec un répartition de 84% Ally1 et 16% Ally2
             allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally1, Ally2 };
             timeA = 4f;//Change le délai entre les spawns à 4s
         }
         //Valeur de vie arbitraire, si le score atteint XX change les caractéristiques du spawner
-        else if (vieJoueur.getVie() > 10) 
+        else if (vieJoueur.getCurrentHealth() > 10) 
         {
             //Modifie la liste d'alliés avec un répartition de 100% Ally1 et 0% Ally2
             allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally1, Ally1 };
