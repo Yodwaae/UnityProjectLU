@@ -81,6 +81,6 @@ public class SpawnEnemy : MonoBehaviour
         scoreText.text = "SCORE : " + score.ToString();// Met à jour le texte de score
 
         
-        UpdateSpawnerE();//Apelle l'update Spawner quand le score est mis à jour plutôt que à charque frame NE FONCTIONNE PAS
+        UpdateSpawnerE();//Apelle l'update Spawner quand le score est mis à jour plutôt que à charque frame 
     }*/
 }

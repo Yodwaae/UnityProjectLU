@@ -61,7 +61,7 @@ public class PlayerMovement : MonoBehaviour
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition); //A MODIFIER
 
         /*Limite du terrain, empeche le joueur de dépasse les coordonées spécifiées*/
-        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -9f, 9f), Mathf.Clamp(transform.position.y, -9f, 9f));
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -14f, 14f), Mathf.Clamp(transform.position.y, -14f, 14f));
     }
 
     void FixedUpdate()//Exécute les inputs

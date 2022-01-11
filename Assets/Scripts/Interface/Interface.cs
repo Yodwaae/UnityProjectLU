@@ -19,7 +19,7 @@ public class Interface : MonoBehaviour
         gameManager = GameObject.FindGameObjectWithTag("GameManager");
     }
 
-    public void SetScoreEnemy()
+    public void SetScoreEnemy()//Le code est relié à rien
     {
         countScoreEnemy += 10;//Ajoute 10 au score à chaque fois la fonction est appelée
         //C'est un peu brut mais de toute façon le score a pas besoin d'être hyper développé
@@ -28,7 +28,7 @@ public class Interface : MonoBehaviour
         //Mise à jour des spawn des ennemis
         spawnEnemy.UpdateSpawnerE(countScoreEnemy);//Appelle l'update Spawner quand le score est mis à jour plutôt que à charque frame
     }
-    public void SetScoreAlly()
+    public void SetScoreAlly()//Pourquoi un score positif quand on tue des alliés ?
     {
         countScoreAlly += 10;
         scoreAlly.text = "Alliés : " + countScoreAlly.ToString();// Met à jour le texte de score
