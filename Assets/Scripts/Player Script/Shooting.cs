@@ -137,7 +137,7 @@ public class Shooting : MonoBehaviour
         //Tire une balle avec un spread random (entre -.2f et .2f)
         Shoot(bullet, firePoint.transform, new Vector3(Random.Range(-.2f, .2f), 0, 0));
         Debug.Log("Mitrailleuse : " + amunitions);
-        amunitions -= 8;//décrémente les munitions de l'arme
+        amunitions -= 4;//décrémente les munitions de l'arme
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
     }
 
