@@ -68,16 +68,9 @@ public class PlayerMovement : MonoBehaviour
     {
         /*Déplace le joueur (position actuelle + direction (normalized élimine l'accélération lors de mouvement en diagonale) * vitesse
          * deltaTime */
-
-        
-        Flip(movement.x);
-
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
 
-        
-
-
-
+        Flip(movement.x);
 
         //ANCIEN SYSTEME D'ORIENTATION
         //Création du vecteur d'orientation du joueur (position de la souris - position actuelle)
