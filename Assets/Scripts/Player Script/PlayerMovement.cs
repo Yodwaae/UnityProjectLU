@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
 
     private Rigidbody2D rb;//Créé une variable pour stocker le corps du joueur
     private Camera cam;//Crée une variable pour stocker la camera
+    private Transform rbWp;
 
     Vector2 movement;//Vecteur contenant le mouvement du joueur
     Vector2 mousePosition;//Vecteur contenant la position de la souris
@@ -21,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void Awake()
     {
+        rbWp = gameObject.transform.GetChild(1).GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();//Récupère le rigidBody du joueur et le stock dans la variable créée préalablement
         cam = Camera.main;//Récupère la camera et la stock dans la variable créée préalablement
     }
@@ -73,12 +75,16 @@ public class PlayerMovement : MonoBehaviour
         Flip(movement.x);
 
         //ANCIEN SYSTEME D'ORIENTATION
-        //Création du vecteur d'orientation du joueur (position de la souris - position actuelle)
-        //Vector2 lookDir = mousePosition - rb.position;
+        //Création du vecteur d'orientation de l'arme(position de la souris - position actuelle)
+        //Vector2 lookDir = (mousePosition - (Vector2)rbWp.position).normalized;
+        //Vector2 lookDirFP = (mousePosition - (Vector2)rbWp.position).normalized;
 
 
-        /*Transforme le vecteur d'orientation en angle, puis le converti de radiant en degré et compense l'offset*/
-        ///float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg -90f;
-        //rb.rotation = angle;//Applique la rotation au joueur
+        ///*Transforme le vecteur d'orientation en angle, puis le converti de radiant en degré et compense l'offset*/
+        //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg+180f;
+        //rbWp.rotation = Quaternion.Euler(0,0, angle);//Applique la rotation au joueur
+
+        //float angleFr = Mathf.Atan2(lookDirFP.y, lookDirFP.x) * Mathf.Rad2Deg - 90f;
+        //firePoint.rotation = Quaternion.Euler(0, 0, angleFr);
     }
 }
