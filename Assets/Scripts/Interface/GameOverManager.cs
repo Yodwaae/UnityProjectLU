@@ -25,6 +25,14 @@ public class GameOverManager : MonoBehaviour
     public void onPlayerDeath()
     {
         gameOverUI.SetActive(true); //affiche l'écran de GameOver
+
+        //NE MARCHE PAS ET CRÉER PLEIN D'ERREURS
+        //Ne s'affiche pas car GameOverMenu est caché
+        //TestX s'ajouter à la suite les uns des autres
+        //IDÉE SOLUTION : Créer une nouvelle scène qui se charge quand le joueur à 0 PV.
+        scoreKillAllies.text += " testA";
+        scoreKillEnemies.text += " testE";
+        time.text += " testT";
     }
 
     public void RetryButton()
