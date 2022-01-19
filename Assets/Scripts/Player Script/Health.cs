@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Health : MonoBehaviour
 {
@@ -62,7 +63,8 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             //fin du jeu
-            GameOverManager.instance.onPlayerDeath();
+            //GameOverManager.instance.onPlayerDeath(); Plus utile ?
+            SceneManager.LoadScene("GameOverScreen");
         }
     }
 
