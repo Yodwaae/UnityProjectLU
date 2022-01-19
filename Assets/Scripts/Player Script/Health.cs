@@ -48,7 +48,7 @@ public class Health : MonoBehaviour
             }
 
             Destroy(collision.gameObject);//détruit l'allié
-            allySpawner.UpdateSpawnerA();////Apelle l'update Spawner quand le joueur gagne de la vie plutôt quà chaque frame
+            allySpawner.UpdateSpawnerA();//Apelle l'update Spawner quand le joueur gagne de la vie plutôt quà chaque frame
             //augmente la taille du halo lorsque le joueur a touché un allié
             lightPlayer.pointLightOuterRadius += 1;
             lightPlayer.pointLightInnerRadius += 1;
@@ -61,9 +61,8 @@ public class Health : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
-            //DO SOMETHING
             //fin du jeu
-            Debug.Log("PERDUUUUUUUUUUUUUUUUUUUU");
+            GameOverManager.instance.onPlayerDeath();
         }
     }
 

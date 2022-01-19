@@ -15,6 +15,7 @@ TagManager:
   - Ally2
   - GameManager
   - Interface
+  - GameOverScreen
   layers:
   - Default
   - TransparentFX
