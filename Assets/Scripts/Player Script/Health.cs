@@ -63,7 +63,7 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             //fin du jeu
-            //GameOverManager.instance.onPlayerDeath(); Plus utile ?
+            //GameOverManager.instance.onPlayerDeath(); 
             SceneManager.LoadScene("GameOverScreen");
         }
     }

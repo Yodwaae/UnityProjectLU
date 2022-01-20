@@ -10,9 +10,10 @@ public class Interface : MonoBehaviour
     private GameObject gameManager;
     public Text scoreEnemy;
     public Text scoreAlly;
-    private int countScoreEnemy;
-    private int countScoreAlly;
-    
+    public int countScoreEnemy;
+    public int countScoreAlly;
+
+    public bool dontDestroy;
 
     private void Awake()
     {
@@ -20,18 +21,21 @@ public class Interface : MonoBehaviour
         spawnEnemy = gameManager.GetComponent<SpawnEnemy>();
     }
 
-    public void SetScoreEnemy()//Le code est relié à rien
+    public void SetScoreEnemy()
     {
         countScoreEnemy += 10;//Ajoute 10 au score à chaque fois la fonction est appelée
+        PlayerPrefs.SetInt("countScoreEnemy", countScoreEnemy); //Enregistre le nombre d'ennemis tués afin de passer la valeur au GameOverManager
         //C'est un peu brut mais de toute façon le score a pas besoin d'être hyper développé
         scoreEnemy.text = "Ennemis : " + countScoreEnemy.ToString();// Met à jour le texte de score
 
         //Mise à jour des spawn des ennemis
-        spawnEnemy.UpdateSpawnerE(countScoreEnemy);//Appelle l'update Spawner quand le score est mis à jour plutôt que à charque frame
+        spawnEnemy.UpdateSpawnerE(countScoreEnemy);//Appelle l'update Spawner quand le score est mis à jour plutôt que à chaque frame
     }
-    public void SetScoreAlly()//Pourquoi un score positif quand on tue des alliés ?
+    public void SetScoreAlly()
     {
-        countScoreAlly += 10;
+        countScoreAlly --; //A VOIR POUR AMÉLIORER COMPTE
+        PlayerPrefs.SetInt("countScoreAlly", countScoreAlly); //Enregistre le nombre d'alliés tués afin de passer la valeur au GameOverManager
+
         scoreAlly.text = "Alliés : " + countScoreAlly.ToString();// Met à jour le texte de score
     }
 }
