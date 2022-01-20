@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,8 @@ public class Health : MonoBehaviour
     public GameObject gManager;//Créer la référence au GameManager
     private SpawnAllies allySpawner;//Créer la référence au spawner allié
     public UnityEngine.Experimental.Rendering.Universal.Light2D lightPlayer;
+    public DateTime startTime;
+    public TimeSpan gameTime;
 
     private int currentHealth = 5;//Créer la variable de vie du joueur
 
@@ -22,7 +25,9 @@ public class Health : MonoBehaviour
     void Start()
     {
         healthBar.SetHealth(currentHealth);
+        startTime = DateTime.Now; //démarre le chrono pour le temps de jeu
     }
+
 
     void OnCollisionEnter2D(Collision2D collision)//Quand le joueur entre en collision
     {
@@ -63,8 +68,9 @@ public class Health : MonoBehaviour
         if (currentHealth <= 0)
         {
             //fin du jeu
-            //GameOverManager.instance.onPlayerDeath(); 
-            SceneManager.LoadScene("GameOverScreen");
+            gameTime = DateTime.Now - startTime; //calcul du temps qu'à durée la partie
+            PlayerPrefs.SetString("gameTime", gameTime.ToString(@"hh\:mm\:ss")); //met le temps de jeu au bon format + sauvegarde du temps de partie pour le GameOverManager
+            SceneManager.LoadScene("GameOverScreen");//chargement de la scène du GameOver
         }
     }
 

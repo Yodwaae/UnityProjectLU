@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,6 +13,7 @@ public class Interface : MonoBehaviour
     public Text scoreAlly;
     public int countScoreEnemy;
     public int countScoreAlly;
+
 
     public bool dontDestroy;
 

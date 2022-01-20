@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,22 +12,6 @@ public class GameOverManager : MonoBehaviour
     public Text scoreKillAllies;
     public Text scoreKillEnemies;
 
-    //TEST ne marche pas
-    //private Interface UI;
-
-    private void Awake()
-    {
-        /*if (instance != null)
-        {
-            Debug.LogWarning("Il y a plus d'une instance de GameOverManager dans la scène");
-            return;
-        }
-
-        instance = this;*/
-
-        /*gameManager = GameObject.FindGameObjectWithTag("GameManager");
-        UI = gameManager.GetComponent<Interface>();*/
-    }
 
     public void Start()
     {
@@ -35,24 +20,19 @@ public class GameOverManager : MonoBehaviour
 
     public void onPlayerDeath()
     {
-
-        //gameOverUI.SetActive(true); //affiche l'écran de GameOver
-
-        //NE MARCHE PAS ET CRÉER PLEIN D'ERREURS
-        //Ne s'affiche pas car GameOverMenu est caché
-        //TestX s'ajouter à la suite les uns des autres
-        //IDÉE SOLUTION : Créer une nouvelle scène qui se charge quand le joueur à 0 PV.
-        scoreKillAllies.text = " Score allie : " + PlayerPrefs.GetInt("countScoreAlly").ToString(); //récupère le score du nombre d'alliés tués (vois Interface.cs)
-        scoreKillEnemies.text = " Score ennemis : " + PlayerPrefs.GetInt("countScoreEnemy").ToString(); //récupère le score du nombre d'ennemis tués (vois Interface.cs)
-        time.text = " testT";
+        scoreKillAllies.text = "Score allie : " + PlayerPrefs.GetInt("countScoreAlly").ToString(); //récupère le score du nombre d'alliés tués (vois Interface.cs)
+        scoreKillEnemies.text = "Score ennemis : " + PlayerPrefs.GetInt("countScoreEnemy").ToString(); //récupère le score du nombre d'ennemis tués (vois Interface.cs)
+        time.text = "Temps : " + PlayerPrefs.GetString("gameTime"); //récupère le temps de jeu pour l'afficher
     }
 
     public void RetryButton()
     {
         SceneManager.LoadScene("Game"); //recharge la scène
-        //remets les scores Alliés et Ennemis à 0 :
+
+        //remets les scores Alliés, Ennemis et le Temps à 0 :
         PlayerPrefs.SetInt("countScoreEnemy", 0);
         PlayerPrefs.SetInt("countScoreAlly", 0);
+        PlayerPrefs.SetInt("gameTime", 0);
     }
 
     public void MainMenuButton()
