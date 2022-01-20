@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+
+public class PauseMenu : MonoBehaviour
+{
+    public static bool gameIsPaused = false;
+
+    public GameObject pauseMenuUI;
+    private GameObject gameManager;
+    //private MainMenu menu;
+    //public Object menu;
+
+    private void Start()
+    {
+        
+    }
+    // Update is called once per frame
+    void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameIsPaused == true)
+                Resume();
+            else
+                Paused();
+        }
+    }
+
+    void Paused()
+    {
+        pauseMenuUI.SetActive(true); //affiche l'écran de la pause
+        Time.timeScale = 0; //arrêt du temps (le jeu ne se joue pas en fond)
+        gameIsPaused = true; //Change le statut du jeu : en pause
+    }
+    public void Resume()
+    {
+        pauseMenuUI.SetActive(false); //n'affiche plus l'écran de la pause
+        Time.timeScale = 1; //on redémarre le temps
+        gameIsPaused = false; //Change le statut du jeu : se joue
+    }
+    /*public void Settings()
+    { NE MARCHE PAS CAR LE CANVAS DES PARAMETRE DE LA SCENE DU MENU EST INACCESIBLE
+    }
+    */
+
+    public void LoadMainMenu()
+    {
+        //DontDestroyOnLoadScene.instance.RemoveFromDontDestroyOnLoad(); UTILE ???? 15.02 dans la vidéo
+        Resume(); //pour éviter que la procchaine partie qu'on relance soit en état de pause
+        SceneManager.LoadScene(0); //on utilise l'index de la scène à charger plutôt que son nom car la scène MainMenu se trouve avant le game dans le build
+    }
+}
