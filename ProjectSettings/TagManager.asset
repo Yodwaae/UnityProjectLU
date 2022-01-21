@@ -16,6 +16,7 @@ TagManager:
   - GameManager
   - Interface
   - GameOverScreen
+  - Settings
   layers:
   - Default
   - TransparentFX

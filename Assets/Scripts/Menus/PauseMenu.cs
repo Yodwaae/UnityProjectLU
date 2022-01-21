@@ -40,14 +40,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1; //on redémarre le temps
         gameIsPaused = false; //Change le statut du jeu : se joue
     }
-    /*public void Settings()
-    { NE MARCHE PAS CAR LE CANVAS DES PARAMETRE DE LA SCENE DU MENU EST INACCESIBLE
-    }
-    */
 
     public void LoadMainMenu()
     {
-        //DontDestroyOnLoadScene.instance.RemoveFromDontDestroyOnLoad(); UTILE ???? 15.02 dans la vidéo
         Resume(); //pour éviter que la procchaine partie qu'on relance soit en état de pause
         SceneManager.LoadScene(0); //on utilise l'index de la scène à charger plutôt que son nom car la scène MainMenu se trouve avant le game dans le build
     }
