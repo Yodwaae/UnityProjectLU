@@ -38,6 +38,12 @@ public class Shooting : MonoBehaviour
     // Update is called once per frame
     void Update()//Récupère les Inputs
     {
+        //Si le jeu est en pause, on ne permet pas au joueur de tirer
+        if(PauseMenu.gameIsPaused)
+        {
+            return;
+        }
+
         /*Enregistre l'input de tir seulement si le joueur possède au moins une balle*/
         if (amunitions > 0)
         {
@@ -165,11 +171,6 @@ public class Shooting : MonoBehaviour
     public void SoundFire(AudioClip audioFire)
     {
         audioSource.PlayOneShot(audioFire);
-
-        /*if (settingsWindow.activeInHierarchy != true)
-            audioSource.PlayOneShot(audioFire);
-        else
-            audioSource.mute = true;*/
     }
 
     /*PS : pour des raisons de praticité concernant la gestion de la barre de munition, la quantité de munition est de 100 pour toutes les armes MAIS les armes
