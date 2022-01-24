@@ -3178,7 +3178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseMenuUI: {fileID: 284828324}
   SettingsWindow: {fileID: 899331645}
-  audio: {fileID: 7652522580990179825}
+  audio: {fileID: 7652522580990179827}
 --- !u!82 &7652522580990179825
 AudioSource:
   m_ObjectHideFlags: 0
@@ -3189,7 +3189,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1885153839537167200, guid: fe7148ffa5d670b4394e71b07c324c27, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 8082aff63fb678a42ae37ed3a621c307, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -3303,7 +3303,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 1885153839537167200, guid: fe7148ffa5d670b4394e71b07c324c27, type: 2}
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 8082aff63fb678a42ae37ed3a621c307, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
