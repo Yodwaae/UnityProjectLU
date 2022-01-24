@@ -17,8 +17,7 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;//Vecteur contenant le mouvement du joueur
     Vector2 mousePosition;//Vecteur contenant la position de la souris
 
-    //public AudioSource audioSource;
-    //public AudioClip playerWalk;
+    public AudioSource audioSource;
 
 
     private void Awake()
@@ -55,6 +54,12 @@ public class PlayerMovement : MonoBehaviour
         /*Récupère les Inputs de mouvement*/
         movement.x = Input.GetAxisRaw("Horizontal");//Récupère l'input sur l'axe X et le stock dans une variable
         movement.y = Input.GetAxisRaw("Vertical");//Récupère l'input sur l'axe Y et le stock dans une variable
+
+        //Permet de jouer le bruit des pas du joueur
+        if((movement.x != 0 || movement.y != 0) && audioSource.isPlaying == false)
+        {
+            audioSource.Play();
+        }
 
         //Gestion des animations
         animator.SetFloat("SpeedH", Mathf.Abs(movement.x));
