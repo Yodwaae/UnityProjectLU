@@ -23,6 +23,8 @@ public class Shooting : MonoBehaviour
     public AudioClip fire2;
     public AudioClip fire3;
 
+    public GameObject settingsWindow;
+
     void Awake()
     {
         fireDelay = 0;//Initalise fireDelay
@@ -94,7 +96,7 @@ public class Shooting : MonoBehaviour
     {
         //tire une balle
         Shoot(bullet, firePoint.transform, new Vector3(0,0,0));
-        audioSource.PlayOneShot(fire1);
+        SoundFire(fire1);
         Debug.Log("Pistolet classique : " + amunitions);
         amunitions -= 4;//décremente les munitions de l'arme
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
@@ -107,15 +109,15 @@ public class Shooting : MonoBehaviour
         {
             //yield return new WaitForSeconds(0.1f);
             Shoot(bullet, firePoint.transform,new Vector3(0, 0, 0));
-            audioSource.PlayOneShot(fire3);
+            SoundFire(fire3);
 
             yield return new WaitForSeconds(0.1f);
             Shoot(bullet, firePoint.transform, new Vector3(.2f, 0, 0));
-            audioSource.PlayOneShot(fire3);
+            SoundFire(fire3);
 
             yield return new WaitForSeconds(0.1f);
             Shoot(bullet, firePoint.transform,new Vector3(-.2f, 0, 0));
-            audioSource.PlayOneShot(fire3);
+            SoundFire(fire3);
         }
 
         StartCoroutine(TimeDelay());
@@ -131,7 +133,7 @@ public class Shooting : MonoBehaviour
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
-        audioSource.PlayOneShot(fire2);
+        SoundFire(fire2);
 
         Debug.Log("Fusil à pompe : " + amunitions);
         amunitions -= 12;//décrémente les munitions de l'arme
@@ -142,7 +144,7 @@ public class Shooting : MonoBehaviour
     {
         //Tire une balle avec un spread random (entre -.2f et .2f)
         Shoot(bullet, firePoint.transform, new Vector3(Random.Range(-.2f, .2f), 0, 0));
-        audioSource.PlayOneShot(fire3);
+        SoundFire(fire3);
         Debug.Log("Mitrailleuse : " + amunitions);
         amunitions -= 4;//décrémente les munitions de l'arme
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
@@ -158,6 +160,16 @@ public class Shooting : MonoBehaviour
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
         gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = weaponSprite;
         gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().color = weaponColor;//Changement de couleur TEMPORAIRE pour TEST
+    }
+
+    public void SoundFire(AudioClip audioFire)
+    {
+        audioSource.PlayOneShot(audioFire);
+
+        /*if (settingsWindow.activeInHierarchy != true)
+            audioSource.PlayOneShot(audioFire);
+        else
+            audioSource.mute = true;*/
     }
 
     /*PS : pour des raisons de praticité concernant la gestion de la barre de munition, la quantité de munition est de 100 pour toutes les armes MAIS les armes
