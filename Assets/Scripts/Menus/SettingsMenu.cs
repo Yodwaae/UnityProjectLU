@@ -7,8 +7,7 @@ using UnityEngine.UI;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer musicAudioMixer;
-    public AudioMixer soundsAudioMixer;
+    public AudioMixer audioMixer;
 
     Resolution[] resolutions;
     public Dropdown resolutionsDropdown;
@@ -16,13 +15,13 @@ public class SettingsMenu : MonoBehaviour
     //Gère le volume de la musique du jeu
     public void SetVolumeMusic(float musicVolume)
     {
-        musicAudioMixer.SetFloat("MusicVolume", musicVolume);
+        audioMixer.SetFloat("Music", musicVolume);
     }
 
-    //gère le volume des bruitages
+    //Gère le volume des bruitages
     public void SetVolumeSounds(float soundsVolume)
     {
-        soundsAudioMixer.SetFloat("SoundsVolume", soundsVolume);
+        audioMixer.SetFloat("Sound", soundsVolume);
     }
 
     //Met le jeu en plein écran
