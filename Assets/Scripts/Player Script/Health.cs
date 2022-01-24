@@ -14,7 +14,6 @@ public class Health : MonoBehaviour
     public TimeSpan gameTime;
 
     private int currentHealth = 5;//Créer la variable de vie du joueur
-
     public HealthBar healthBar;
 
     private void Awake()

@@ -12,6 +12,8 @@ public class GameOverManager : MonoBehaviour
     public Text scoreKillAllies;
     public Text scoreKillEnemies;
 
+    public AudioSource audioSource;
+    public AudioClip death;
 
     public void Start()
     {
@@ -20,6 +22,9 @@ public class GameOverManager : MonoBehaviour
 
     public void onPlayerDeath()
     {
+        //Le son de la mort du personnage se trouve ici car il n'y a pas de cinématique de mort, 
+        //le son n'a donc pas le temps de se jouer si on met le landcement du son dans Health
+        audioSource.PlayOneShot(death);
         scoreKillAllies.text = "Score allie : " + PlayerPrefs.GetInt("countScoreAlly").ToString(); //récupère le score du nombre d'alliés tués (vois Interface.cs)
         scoreKillEnemies.text = "Score ennemis : " + PlayerPrefs.GetInt("countScoreEnemy").ToString(); //récupère le score du nombre d'ennemis tués (vois Interface.cs)
         time.text = "Temps : " + PlayerPrefs.GetString("gameTime"); //récupère le temps de jeu pour l'afficher

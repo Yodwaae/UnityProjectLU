@@ -15,6 +15,7 @@ public class SpawnEnemy : MonoBehaviour
     public GameObject Enemy1;//Référence à l'ennemi 1
     public GameObject Enemy2;//Référence à l'ennemi 2
 
+    public ScreamEnemy scream;
 
     // Start is called before the first frame update
     void Start()
@@ -53,8 +54,11 @@ public class SpawnEnemy : MonoBehaviour
     {
         Vector2 spawnPos = player.transform.position; //Récupère la position du joueur
         /*Choisis une coordonée dans un cercle autour du joueur, multiplié par spawnRadius pour que 
-         l'ennemi n'apparaisse pas au contact du joueur*/
+         l'ennemi n'apparaisse pas au contact du joueur*/ //A REVOIR CAR NE MARCHE PAS TRES BIEN (IDEM POUR LES ALLIÉS)
         spawnPos += Random.insideUnitCircle.normalized * spawnRadius;
+
+        //fait crier l'ennemi
+        scream.ScreamEnemies();
 
         Instantiate(enemies[Random.Range(0, enemies.Length)], spawnPos, Quaternion.identity);
         yield return new WaitForSeconds(timeE);//Attends un délai avant de rappeler la fonction
