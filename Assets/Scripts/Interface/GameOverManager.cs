@@ -15,6 +15,8 @@ public class GameOverManager : MonoBehaviour
     public AudioSource audioSource;
     public AudioClip death;
 
+    public AudioSource audioButton;
+
     public void Start()
     {
         onPlayerDeath();
@@ -43,10 +45,12 @@ public class GameOverManager : MonoBehaviour
     public void MainMenuButton()
     {
         SceneManager.LoadScene("Main_menu"); //charge la scène du menu principal
+        audioButton.Play();
     }
 
     public void QuitButton()
     {
+        audioButton.Play();
         Application.Quit(); // quitte le jeu
     }
 }
