@@ -9,8 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     public GameObject pauseMenuUI;
     private GameObject gameManager;
-    //private MainMenu menu;
-    //public Object menu;
+    public GameObject SettingsWindow;
 
     private void Start()
     {
@@ -34,11 +33,22 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0; //arrêt du temps (le jeu ne se joue pas en fond)
         gameIsPaused = true; //Change le statut du jeu : en pause
     }
+
     public void Resume()
     {
         pauseMenuUI.SetActive(false); //n'affiche plus l'écran de la pause
         Time.timeScale = 1; //on redémarre le temps
         gameIsPaused = false; //Change le statut du jeu : se joue
+    }
+
+    public void OpenSettingsWindow()
+    {
+        SettingsWindow.SetActive(true);
+    }
+
+    public void CloseSettingsWindow()
+    {
+        SettingsWindow.SetActive(false);
     }
 
     public void LoadMainMenu()
