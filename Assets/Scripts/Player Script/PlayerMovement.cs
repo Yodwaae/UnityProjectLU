@@ -17,7 +17,8 @@ public class PlayerMovement : MonoBehaviour
     Vector2 movement;//Vecteur contenant le mouvement du joueur
     Vector2 mousePosition;//Vecteur contenant la position de la souris
 
-
+    //public AudioSource audioSource;
+    //public AudioClip playerWalk;
 
 
     private void Awake()
@@ -80,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
         //Vector2 lookDirFP = (mousePosition - (Vector2)rbWp.position).normalized;
 
 
-        ///*Transforme le vecteur d'orientation en angle, puis le converti de radiant en degré et compense l'offset*/
+        ///Transforme le vecteur d'orientation en angle, puis le converti de radiant en degré et compense l'offset*/
         //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg+180f;
         //rbWp.rotation = Quaternion.Euler(0,0, angle);//Applique la rotation au joueur
 

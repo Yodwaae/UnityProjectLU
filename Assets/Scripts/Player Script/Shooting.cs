@@ -18,6 +18,11 @@ public class Shooting : MonoBehaviour
     public MunitionBar munitionBar;
     private Transform weaponChild;
 
+    public AudioSource audioSource;
+    public AudioClip fire1;
+    public AudioClip fire2;
+    public AudioClip fire3;
+
     void Awake()
     {
         fireDelay = 0;//Initalise fireDelay
@@ -28,10 +33,6 @@ public class Shooting : MonoBehaviour
         munitionBar.SetMaxMunition(amunitions);//initialise la bar de munition
     }
 
-    private void Start()
-    {
-        
-    }
     // Update is called once per frame
     void Update()//Récupère les Inputs
     {
@@ -93,6 +94,7 @@ public class Shooting : MonoBehaviour
     {
         //tire une balle
         Shoot(bullet, firePoint.transform, new Vector3(0,0,0));
+        audioSource.PlayOneShot(fire1);
         Debug.Log("Pistolet classique : " + amunitions);
         amunitions -= 4;//décremente les munitions de l'arme
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
@@ -105,12 +107,15 @@ public class Shooting : MonoBehaviour
         {
             //yield return new WaitForSeconds(0.1f);
             Shoot(bullet, firePoint.transform,new Vector3(0, 0, 0));
+            audioSource.PlayOneShot(fire3);
 
             yield return new WaitForSeconds(0.1f);
             Shoot(bullet, firePoint.transform, new Vector3(.2f, 0, 0));
+            audioSource.PlayOneShot(fire3);
 
             yield return new WaitForSeconds(0.1f);
             Shoot(bullet, firePoint.transform,new Vector3(-.2f, 0, 0));
+            audioSource.PlayOneShot(fire3);
         }
 
         StartCoroutine(TimeDelay());
@@ -126,6 +131,7 @@ public class Shooting : MonoBehaviour
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
+        audioSource.PlayOneShot(fire2);
 
         Debug.Log("Fusil à pompe : " + amunitions);
         amunitions -= 12;//décrémente les munitions de l'arme
@@ -136,6 +142,7 @@ public class Shooting : MonoBehaviour
     {
         //Tire une balle avec un spread random (entre -.2f et .2f)
         Shoot(bullet, firePoint.transform, new Vector3(Random.Range(-.2f, .2f), 0, 0));
+        audioSource.PlayOneShot(fire3);
         Debug.Log("Mitrailleuse : " + amunitions);
         amunitions -= 4;//décrémente les munitions de l'arme
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition

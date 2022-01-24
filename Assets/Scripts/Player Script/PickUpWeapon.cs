@@ -6,6 +6,9 @@ using UnityEngine;
 public class PickUpWeapon : MonoBehaviour
 {
     private Shooting shoot;//Créer la référence au script Shooting du joueur
+    public AudioSource audioSource;
+    public AudioClip soundGun1;
+    public AudioClip soundGun2;
 
     void Awake()
     {
@@ -24,6 +27,7 @@ public class PickUpWeapon : MonoBehaviour
             //Récupère la sprite du pick-up pour changer la sprite de l'arme joueur
             SpriteRenderer weapSpriteRend = collision.transform.GetComponent<SpriteRenderer>();
             shoot.changeWeapon(8f, 0.4f, 0, 100, weapSpriteRend.sprite, weapSpriteRend.color);//Changement de couleur TEMPORAIRE pour TEST
+            audioSource.PlayOneShot(soundGun1);
             Destroy(collision.gameObject);
         }
         else if(collision.gameObject.tag == "Assaut")
@@ -31,6 +35,7 @@ public class PickUpWeapon : MonoBehaviour
             //Récupère la sprite du pick-up pour changer la sprite de l'arme joueur
             SpriteRenderer weapSpriteRend = collision.transform.GetComponent<SpriteRenderer>();
             shoot.changeWeapon(15f, 0.4f, 1, 100, weapSpriteRend.sprite, weapSpriteRend.color);//Changement de couleur TEMPORAIRE pour TEST
+            audioSource.PlayOneShot(soundGun2);
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.tag == "Shotgun")
@@ -38,6 +43,7 @@ public class PickUpWeapon : MonoBehaviour
             //Récupère la sprite du pick-up pour changer la sprite de l'arme joueur
             SpriteRenderer weapSpriteRend = collision.transform.GetComponent<SpriteRenderer>();
             shoot.changeWeapon(10f, 0.6f, 2, 100, weapSpriteRend.sprite, weapSpriteRend.color);//Changement de couleur TEMPORAIRE pour TEST
+            audioSource.PlayOneShot(soundGun1);
             Destroy(collision.gameObject);
         }
         else if (collision.gameObject.tag == "MachineGun")
@@ -45,6 +51,7 @@ public class PickUpWeapon : MonoBehaviour
             //Récupère la sprite du pick-up pour changer la sprite de l'arme joueur
             SpriteRenderer weapSpriteRend = collision.transform.GetComponent<SpriteRenderer>();
             shoot.changeWeapon(20f, 0.1f, 3, 100, weapSpriteRend.sprite, weapSpriteRend.color);//Changement de couleur TEMPORAIRE pour TEST
+            audioSource.PlayOneShot(soundGun2);
             Destroy(collision.gameObject);
         }
 
