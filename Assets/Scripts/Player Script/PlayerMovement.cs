@@ -1,11 +1,82 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMovement : MonoBehaviour
 {
+    private Rigidbody2D rb;//Créé une variable pour stocker le corps du joueur
+    private PlayerControls playerInputActions;
+    private float speed = 5f;
 
-    public float moveSpeed;//Vitesse du joueur
+    public Animator animator;//Animation
+    public SpriteRenderer spriteRenderer;//image
+    public Transform firePoint;
+
+    public AudioSource audioSource;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();//Récupère le rigidBody du joueur et le stock dans la variable créée préalablement
+        playerInputActions = new PlayerControls();
+        playerInputActions.basic.Enable();
+    }
+
+    //Déplacement du personnage
+    private void FixedUpdate()
+    {
+        Vector2 inputVector = playerInputActions.basic.Move.ReadValue<Vector2>();
+        rb.transform.Translate(new Vector2(inputVector.x, inputVector.y) * speed * Time.fixedDeltaTime);
+
+        //Gestion des animations
+        animator.SetFloat("SpeedH", Mathf.Abs(inputVector.x));
+        animator.SetFloat("SpeedV", Mathf.Abs(inputVector.y));
+
+        if (inputVector.x == 1.0)
+            Flip(1);
+        else if (inputVector.x == -1.0)
+            Flip(2);
+
+    }
+
+    private void Update()
+    {
+        Vector2 inputVector = playerInputActions.basic.Move.ReadValue<Vector2>();
+
+        //Permet de jouer le bruit des pas du joueur
+        if ((inputVector.x != 0 || inputVector.y != 0) && audioSource.isPlaying == false)
+        {
+            audioSource.Play();
+        }
+
+        //Limite du terrain, empeche le joueur de dépasse les coordonées spécifiées
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -14f, 14f), Mathf.Clamp(transform.position.y, -14f, 14f));
+    }
+
+
+    //Permet de changer la direction du sprite du joueur, de l'arme et du firePoint
+    void Flip(int flip)
+    {
+        SpriteRenderer sp1 = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        Transform sp2 = gameObject.transform.GetChild(0);
+
+        if (flip == 1)
+        {
+            spriteRenderer.flipX = true; //joueur
+            sp1.flipX = true; //arme
+            sp2.transform.localPosition = new Vector3(Mathf.Abs(sp2.transform.localPosition.x), sp2.transform.localPosition.y, sp2.transform.localPosition.z);//firePoint
+        }
+        else if (flip == 2)
+        {
+            spriteRenderer.flipX = false; //joueur
+            sp1.flipX = false; //arme
+            sp2.transform.localPosition = new Vector3(-Mathf.Abs(sp2.transform.localPosition.x), sp2.transform.localPosition.y, sp2.transform.localPosition.z);//firePoint
+        }
+    }
+
+    //---------------------------------------------------------------ANCIEN SYSTEME DE MOUVEMENT --------------------------------------------------------------------------------------------------------
+
+    /*public float moveSpeed;//Vitesse du joueur
     public Animator animator;//Animation
     public SpriteRenderer spriteRenderer;//image
     public Transform firePoint;
@@ -51,7 +122,7 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()//Récupère les inputs 
     {
-        /*Récupère les Inputs de mouvement*/
+        //Récupère les Inputs de mouvement
         movement.x = Input.GetAxisRaw("Horizontal");//Récupère l'input sur l'axe X et le stock dans une variable
         movement.y = Input.GetAxisRaw("Vertical");//Récupère l'input sur l'axe Y et le stock dans une variable
 
@@ -65,17 +136,17 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("SpeedH", Mathf.Abs(movement.x));
         animator.SetFloat("SpeedV", Mathf.Abs(movement.y));
 
-        /*Récupère la position de la souris, la transforme en coordonées et la stock dans une variable*/
+        //Récupère la position de la souris, la transforme en coordonées et la stock dans une variable
         mousePosition = cam.ScreenToWorldPoint(Input.mousePosition); //A MODIFIER
 
-        /*Limite du terrain, empeche le joueur de dépasse les coordonées spécifiées*/
+        //Limite du terrain, empeche le joueur de dépasse les coordonées spécifiées
         transform.position = new Vector2(Mathf.Clamp(transform.position.x, -14f, 14f), Mathf.Clamp(transform.position.y, -14f, 14f));
     }
 
     void FixedUpdate()//Exécute les inputs
     {
-        /*Déplace le joueur (position actuelle + direction (normalized élimine l'accélération lors de mouvement en diagonale) * vitesse
-         * deltaTime */
+        //Déplace le joueur (position actuelle + direction (normalized élimine l'accélération lors de mouvement en diagonale) * vitesse
+        //* deltaTime 
         rb.MovePosition(rb.position + movement.normalized * moveSpeed * Time.fixedDeltaTime);
 
         Flip(movement.x);
@@ -86,11 +157,11 @@ public class PlayerMovement : MonoBehaviour
         //Vector2 lookDirFP = (mousePosition - (Vector2)rbWp.position).normalized;
 
 
-        ///Transforme le vecteur d'orientation en angle, puis le converti de radiant en degré et compense l'offset*/
+        ///Transforme le vecteur d'orientation en angle, puis le converti de radiant en degré et compense l'offset
         //float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg+180f;
         //rbWp.rotation = Quaternion.Euler(0,0, angle);//Applique la rotation au joueur
 
         //float angleFr = Mathf.Atan2(lookDirFP.y, lookDirFP.x) * Mathf.Rad2Deg - 90f;
         //firePoint.rotation = Quaternion.Euler(0, 0, angleFr);
-    }
+    }*/
 }

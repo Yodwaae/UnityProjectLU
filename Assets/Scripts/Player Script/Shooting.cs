@@ -23,7 +23,6 @@ public class Shooting : MonoBehaviour
     public AudioClip fire2;
     public AudioClip fire3;
 
-    public GameObject settingsWindow;
 
     void Awake()
     {
