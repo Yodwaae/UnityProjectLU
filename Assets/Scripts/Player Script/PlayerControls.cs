@@ -23,13 +23,21 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""type"": ""Value"",
                     ""id"": ""18988a65-99ac-4442-a8d7-fc461f7f4276"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""StickDeadzone(min=0.125)"",
                     ""interactions"": """"
                 },
                 {
                     ""name"": ""Fire"",
                     ""type"": ""Button"",
                     ""id"": ""0b04ff41-29e1-4b25-a344-252451bab5aa"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Paused"",
+                    ""type"": ""Button"",
+                    ""id"": ""248f7eac-5543-41cd-a37b-55ee4738c018"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -149,9 +157,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""2934643b-09a5-4b06-9992-191bba59820f"",
-                    ""path"": ""<Gamepad>/leftStick"",
+                    ""path"": ""<XInputController>/leftStick"",
                     ""interactions"": """",
-                    ""processors"": """",
+                    ""processors"": ""NormalizeVector2"",
                     ""groups"": """",
                     ""action"": ""Move"",
                     ""isComposite"": false,
@@ -178,6 +186,28 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""Fire"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e319f1f5-be0f-48f7-80ae-9d9ae2d919c2"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Paused"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d6dc626c-85a9-4aa1-ba1c-fc11fe06b25d"",
+                    ""path"": ""<XInputController>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Paused"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -188,6 +218,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_basic = asset.FindActionMap("basic", throwIfNotFound: true);
         m_basic_Move = m_basic.FindAction("Move", throwIfNotFound: true);
         m_basic_Fire = m_basic.FindAction("Fire", throwIfNotFound: true);
+        m_basic_Paused = m_basic.FindAction("Paused", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -239,12 +270,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private IBasicActions m_BasicActionsCallbackInterface;
     private readonly InputAction m_basic_Move;
     private readonly InputAction m_basic_Fire;
+    private readonly InputAction m_basic_Paused;
     public struct BasicActions
     {
         private @PlayerControls m_Wrapper;
         public BasicActions(@PlayerControls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_basic_Move;
         public InputAction @Fire => m_Wrapper.m_basic_Fire;
+        public InputAction @Paused => m_Wrapper.m_basic_Paused;
         public InputActionMap Get() { return m_Wrapper.m_basic; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -260,6 +293,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Fire.started -= m_Wrapper.m_BasicActionsCallbackInterface.OnFire;
                 @Fire.performed -= m_Wrapper.m_BasicActionsCallbackInterface.OnFire;
                 @Fire.canceled -= m_Wrapper.m_BasicActionsCallbackInterface.OnFire;
+                @Paused.started -= m_Wrapper.m_BasicActionsCallbackInterface.OnPaused;
+                @Paused.performed -= m_Wrapper.m_BasicActionsCallbackInterface.OnPaused;
+                @Paused.canceled -= m_Wrapper.m_BasicActionsCallbackInterface.OnPaused;
             }
             m_Wrapper.m_BasicActionsCallbackInterface = instance;
             if (instance != null)
@@ -270,6 +306,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @Fire.started += instance.OnFire;
                 @Fire.performed += instance.OnFire;
                 @Fire.canceled += instance.OnFire;
+                @Paused.started += instance.OnPaused;
+                @Paused.performed += instance.OnPaused;
+                @Paused.canceled += instance.OnPaused;
             }
         }
     }
@@ -278,5 +317,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnFire(InputAction.CallbackContext context);
+        void OnPaused(InputAction.CallbackContext context);
     }
 }

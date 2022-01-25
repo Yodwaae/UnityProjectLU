@@ -32,11 +32,11 @@ public class PlayerMovement : MonoBehaviour
         animator.SetFloat("SpeedH", Mathf.Abs(inputVector.x));
         animator.SetFloat("SpeedV", Mathf.Abs(inputVector.y));
 
-        if (inputVector.x == 1.0)
+        //Valeur permettant un flip correct pour le clavier mais aussi pour la manette
+        if (inputVector.x >= 0.5)
             Flip(1);
-        else if (inputVector.x == -1.0)
+        else if (inputVector.x <= -0.5)
             Flip(2);
-
     }
 
     private void Update()
@@ -73,6 +73,9 @@ public class PlayerMovement : MonoBehaviour
             sp2.transform.localPosition = new Vector3(-Mathf.Abs(sp2.transform.localPosition.x), sp2.transform.localPosition.y, sp2.transform.localPosition.z);//firePoint
         }
     }
+
+
+
 
     //---------------------------------------------------------------ANCIEN SYSTEME DE MOUVEMENT --------------------------------------------------------------------------------------------------------
 

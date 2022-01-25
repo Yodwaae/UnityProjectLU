@@ -10,13 +10,21 @@
                     "type": "Value",
                     "id": "18988a65-99ac-4442-a8d7-fc461f7f4276",
                     "expectedControlType": "Vector2",
-                    "processors": "",
+                    "processors": "StickDeadzone(min=0.125)",
                     "interactions": ""
                 },
                 {
                     "name": "Fire",
                     "type": "Button",
                     "id": "0b04ff41-29e1-4b25-a344-252451bab5aa",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Paused",
+                    "type": "Button",
+                    "id": "248f7eac-5543-41cd-a37b-55ee4738c018",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -136,9 +144,9 @@
                 {
                     "name": "",
                     "id": "2934643b-09a5-4b06-9992-191bba59820f",
-                    "path": "<Gamepad>/leftStick",
+                    "path": "<XInputController>/leftStick",
                     "interactions": "",
-                    "processors": "",
+                    "processors": "NormalizeVector2",
                     "groups": "",
                     "action": "Move",
                     "isComposite": false,
@@ -163,6 +171,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Fire",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e319f1f5-be0f-48f7-80ae-9d9ae2d919c2",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Paused",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6dc626c-85a9-4aa1-ba1c-fc11fe06b25d",
+                    "path": "<XInputController>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Paused",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

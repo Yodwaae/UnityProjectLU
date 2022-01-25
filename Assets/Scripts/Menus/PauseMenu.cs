@@ -7,17 +7,25 @@ public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
 
+    private PlayerControls playerInputActions;
+
     public GameObject pauseMenuUI;
     private GameObject gameManager;
     public GameObject SettingsWindow;
 
     public new AudioSource audio;
 
+    private void Awake()
+    {
+        //Prépare les contrôles
+        playerInputActions = new PlayerControls();
+        playerInputActions.basic.Enable();
+    }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(playerInputActions.basic.Paused.ReadValue<float>() == 1)
         {
             audio.Play();
             if (gameIsPaused == true)

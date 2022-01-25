@@ -8,6 +8,8 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;//Référence au firePoint (point de départ de la balle)
     public GameObject bullet;//Référence à l'objet balle
 
+    private PlayerControls playerInputActions;
+
     /*Crée la variable qui stock le délai entre les tirs de l'arme,
      * 0.4 pour l'arme de base, XX pour le fusil d'assaut, XX pour le fusil à pompe, XX pour la mitrailleuse*/
     private float fireRate;
@@ -26,6 +28,10 @@ public class Shooting : MonoBehaviour
 
     void Awake()
     {
+        //Prépare les contrôles
+        playerInputActions = new PlayerControls();
+        playerInputActions.basic.Enable();
+
         fireDelay = 0;//Initalise fireDelay
         weaponEquipped = 0;//( 0 = arme de base, 1 = fusil d'assaut, 2 = fusil à pompe et 3 = mitrailleuse)
         fireRate = 0.4f;//0.4 pour l'arme de base, XX pour le fusil d'assaut, XX pour le fusil à pompe, XX pour la mitrailleuse
@@ -51,7 +57,10 @@ public class Shooting : MonoBehaviour
             {
                 /*La première partie de l'expression vérifie que l'input de tir soit donné
                  la deuxième partie de l'expression vérifie que Time.time (le temps actuel) soit supérieur à fireDelay */
-                if (Input.GetButtonDown("Fire1") && Time.time > fireDelay)
+
+
+                //if (Input.GetButtonDown("Fire1") && Time.time > fireDelay)
+                if (playerInputActions.basic.Fire.ReadValue<float>() == 1 && Time.time > fireDelay)
                 {
                     /*Time.time = temps actuel + fireRate = délai (en seconde) entre deux tir
                     fireDelay = temps à partir duquel sera autorisé le prochain coup de feu*/
@@ -66,7 +75,7 @@ public class Shooting : MonoBehaviour
             {
                 /*La première partie de l'expression vérifie que l'input de tir soit donné
                  la deuxième partie de l'expression vérifie que Time.time (le temps actuel) soit supérieur à fireDelay */
-                if (Input.GetButton("Fire1") && Time.time > fireDelay)
+                if (playerInputActions.basic.Fire.ReadValue<float>() == 1 && Time.time > fireDelay)
                 {
                     /*Time.time = temps actuel + fireRate = délai (en seconde) entre deux tir
                     fireDelay = temps à partir duquel sera autorisé le prochain coup de feu*/
