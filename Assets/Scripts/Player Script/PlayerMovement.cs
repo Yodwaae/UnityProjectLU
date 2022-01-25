@@ -23,7 +23,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     //Déplacement du personnage
-    private void FixedUpdate()
+    public void FixedUpdate()
     {
         Vector2 inputVector = playerInputActions.basic.Move.ReadValue<Vector2>();
         rb.transform.Translate(new Vector2(inputVector.x, inputVector.y) * speed * Time.fixedDeltaTime);
@@ -42,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         Vector2 inputVector = playerInputActions.basic.Move.ReadValue<Vector2>();
+
 
         //Permet de jouer le bruit des pas du joueur
         if ((inputVector.x != 0 || inputVector.y != 0) && audioSource.isPlaying == false)

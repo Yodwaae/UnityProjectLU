@@ -41,7 +41,7 @@ public class Shooting : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()//Récupère les Inputs
+    public void Update()//Récupère les Inputs
     {
         //Si le jeu est en pause, on ne permet pas au joueur de tirer
         if(PauseMenu.gameIsPaused)

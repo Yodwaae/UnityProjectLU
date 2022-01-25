@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
 public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
@@ -23,7 +24,7 @@ public class PauseMenu : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    public void FixedUpdate()
     {
         if(playerInputActions.basic.Paused.ReadValue<float>() == 1)
         {
