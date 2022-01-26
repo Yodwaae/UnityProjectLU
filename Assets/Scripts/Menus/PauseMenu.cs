@@ -13,14 +13,14 @@ public class PauseMenu : MonoBehaviour
     private float input;
 
     public GameObject pauseMenuUI;
-    public GameObject SettingsWindow;
+    public GameObject settingsWindow;
 
     public new AudioSource audio;
 
 
     public void Paused(InputAction.CallbackContext ctx)
     {
-        if (!gameObject.scene.IsValid())
+        if (!gameObject.scene.IsValid())//si la scène n'est pas valide
             return;
         
         if (ctx.performed)
@@ -57,13 +57,13 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenSettingsWindow()
     {
-        SettingsWindow.SetActive(true);
+        settingsWindow.SetActive(true);
         audio.Play();
     }
 
     public void CloseSettingsWindow()
     {
-        SettingsWindow.SetActive(false);
+        settingsWindow.SetActive(false);
         audio.Play();
     }
 
