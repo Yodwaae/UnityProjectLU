@@ -11,7 +11,6 @@ public class PauseMenu : MonoBehaviour
     private PlayerControls playerInputActions;
 
     public GameObject pauseMenuUI;
-    private GameObject gameManager;
     public GameObject SettingsWindow;
 
     public new AudioSource audio;
