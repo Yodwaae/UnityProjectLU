@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Shooting : MonoBehaviour
 {
@@ -8,7 +9,8 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;//Référence au firePoint (point de départ de la balle)
     public GameObject bullet;//Référence à l'objet balle
 
-    private PlayerControls playerInputActions;
+    public PlayerInput playerInputActions;
+    private float input;
 
     /*Crée la variable qui stock le délai entre les tirs de l'arme,
      * 0.4 pour l'arme de base, XX pour le fusil d'assaut, XX pour le fusil à pompe, XX pour la mitrailleuse*/
@@ -18,7 +20,7 @@ public class Shooting : MonoBehaviour
     private float fireDelay;//Crée la variable qui sert à calculer le délais entre les tirs
     private int amunitions;//Crée la variable qui stock les munitions du joueurs
     public MunitionBar munitionBar;
-    private Transform weaponChild;
+    //private Transform weaponChild;
 
     public AudioSource audioSource;
     public AudioClip fire1;
@@ -28,10 +30,6 @@ public class Shooting : MonoBehaviour
 
     void Awake()
     {
-        //Prépare les contrôles
-        playerInputActions = new PlayerControls();
-        playerInputActions.basic.Enable();
-
         fireDelay = 0;//Initalise fireDelay
         weaponEquipped = 0;//( 0 = arme de base, 1 = fusil d'assaut, 2 = fusil à pompe et 3 = mitrailleuse)
         fireRate = 0.4f;//0.4 pour l'arme de base, XX pour le fusil d'assaut, XX pour le fusil à pompe, XX pour la mitrailleuse
@@ -47,42 +45,6 @@ public class Shooting : MonoBehaviour
         if(PauseMenu.gameIsPaused)
         {
             return;
-        }
-
-        /*Enregistre l'input de tir seulement si le joueur possède au moins une balle*/
-        if (amunitions > 0)
-        {
-            /*Si l'arme équipée n'est pas automatique, récupère un input par clic*/
-            if (weaponEquipped == 0 || weaponEquipped == 1 || weaponEquipped == 2)
-            {
-                /*La première partie de l'expression vérifie que l'input de tir soit donné
-                 la deuxième partie de l'expression vérifie que Time.time (le temps actuel) soit supérieur à fireDelay */
-
-
-                //if (Input.GetButtonDown("Fire1") && Time.time > fireDelay)
-                if (playerInputActions.basic.Fire.ReadValue<float>() == 1 && Time.time > fireDelay)
-                {
-                    /*Time.time = temps actuel + fireRate = délai (en seconde) entre deux tir
-                    fireDelay = temps à partir duquel sera autorisé le prochain coup de feu*/
-                    fireDelay = Time.time + fireRate;
-                    if (weaponEquipped == 0) ShootWP1(); //Si arme basique équipée appelle la fonction de tir 1
-                    else if (weaponEquipped == 1) ShootWP2();//Si fusil d'assaut équipé apelle la fonction de tir 2
-                    else ShootWP3();//Si fusil à pompe équipé apelle la fonction de tir 3
-                }
-
-            }
-            else/*Si l'arme équipée est automatique récupère un input en continu*/
-            {
-                /*La première partie de l'expression vérifie que l'input de tir soit donné
-                 la deuxième partie de l'expression vérifie que Time.time (le temps actuel) soit supérieur à fireDelay */
-                if (playerInputActions.basic.Fire.ReadValue<float>() == 1 && Time.time > fireDelay)
-                {
-                    /*Time.time = temps actuel + fireRate = délai (en seconde) entre deux tir
-                    fireDelay = temps à partir duquel sera autorisé le prochain coup de feu*/
-                    fireDelay = Time.time + fireRate;
-                    ShootWP4();//Apelle la fonction de tir 4
-                }
-            }
         }
     }
 
@@ -179,6 +141,51 @@ public class Shooting : MonoBehaviour
     public void SoundFire(AudioClip audioFire)
     {
         audioSource.PlayOneShot(audioFire);
+    }
+
+    public void Fire(InputAction.CallbackContext ctx)
+    {
+        input = ctx.ReadValue<float>();
+
+
+        Debug.Log("Fire");
+
+
+        /*Enregistre l'input de tir seulement si le joueur possède au moins une balle*/
+        if (amunitions > 0)
+        {
+            /*Si l'arme équipée n'est pas automatique, récupère un input par clic*/
+            if (weaponEquipped == 0 || weaponEquipped == 1 || weaponEquipped == 2)
+            {
+                /*La première partie de l'expression vérifie que l'input de tir soit donné
+                 la deuxième partie de l'expression vérifie que Time.time (le temps actuel) soit supérieur à fireDelay */
+
+
+                //if (Input.GetButtonDown("Fire1") && Time.time > fireDelay)
+                if (input == 1 && Time.time > fireDelay)
+                {
+                    /*Time.time = temps actuel + fireRate = délai (en seconde) entre deux tir
+                    fireDelay = temps à partir duquel sera autorisé le prochain coup de feu*/
+                    fireDelay = Time.time + fireRate;
+                    if (weaponEquipped == 0) ShootWP1(); //Si arme basique équipée appelle la fonction de tir 1
+                    else if (weaponEquipped == 1) ShootWP2();//Si fusil d'assaut équipé apelle la fonction de tir 2
+                    else ShootWP3();//Si fusil à pompe équipé apelle la fonction de tir 3
+                }
+
+            }
+            else/*Si l'arme équipée est automatique récupère un input en continu*/
+            {
+                /*La première partie de l'expression vérifie que l'input de tir soit donné
+                 la deuxième partie de l'expression vérifie que Time.time (le temps actuel) soit supérieur à fireDelay */
+                if (input == 1 && Time.time > fireDelay)
+                {
+                    /*Time.time = temps actuel + fireRate = délai (en seconde) entre deux tir
+                    fireDelay = temps à partir duquel sera autorisé le prochain coup de feu*/
+                    fireDelay = Time.time + fireRate;
+                    ShootWP4();//Apelle la fonction de tir 4
+                }
+            }
+        }
     }
 
     /*PS : pour des raisons de praticité concernant la gestion de la barre de munition, la quantité de munition est de 100 pour toutes les armes MAIS les armes
