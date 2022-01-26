@@ -3046,7 +3046,19 @@ MonoBehaviour:
     m_ActionId: 0b04ff41-29e1-4b25-a344-252451bab5aa
     m_ActionName: basic/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7652522580990179824}
+        m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
+        m_MethodName: Paused
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 248f7eac-5543-41cd-a37b-55ee4738c018
     m_ActionName: basic/Paused[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
@@ -3288,6 +3300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32df5a234bee43545a818d836c9c7bc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerInputActions: {fileID: 0}
   pauseMenuUI: {fileID: 284828324}
   SettingsWindow: {fileID: 899331645}
   audio: {fileID: 7652522580990179827}

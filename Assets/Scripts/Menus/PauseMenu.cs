@@ -2,40 +2,42 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
 
 
 public class PauseMenu : MonoBehaviour
 {
     public static bool gameIsPaused = false;
 
-    private PlayerControls playerInputActions;
+    public PlayerInput playerInputActions;
+    private float input;
 
     public GameObject pauseMenuUI;
     public GameObject SettingsWindow;
 
     public new AudioSource audio;
 
-    private void Awake()
-    {
-        //Prépare les contrôles
-        playerInputActions = new PlayerControls();
-        playerInputActions.basic.Enable();
-    }
 
-    // Update is called once per frame
-    public void FixedUpdate()
+    public void Paused(InputAction.CallbackContext ctx)
     {
-        if(playerInputActions.basic.Paused.ReadValue<float>() == 1)
+        if (!gameObject.scene.IsValid())
+            return;
+        
+        if (ctx.performed)
         {
             audio.Play();
             if (gameIsPaused == true)
+            {
                 Resume();
+            }
             else
-                Paused();
+            {
+                Stopped();
+            }
         }
     }
 
-    void Paused()
+    public void Stopped()
     {
         //Mettre de quoi ne pas pouvoir tirer une balle
         pauseMenuUI.SetActive(true); //affiche l'écran de la pause

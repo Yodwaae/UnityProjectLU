@@ -30,9 +30,6 @@ public class PlayerMovement : MonoBehaviour
 
         rb.transform.Translate(finalMovement);
 
-
-        Debug.Log(finalMovement);
-
         //Gestion des animations
         animator.SetFloat("SpeedH", Mathf.Abs(finalMovement.x));
         animator.SetFloat("SpeedV", Mathf.Abs(finalMovement.y));

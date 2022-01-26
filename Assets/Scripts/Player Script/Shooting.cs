@@ -147,9 +147,10 @@ public class Shooting : MonoBehaviour
     {
         input = ctx.ReadValue<float>();
 
-
-        Debug.Log("Fire");
-
+        if (PauseMenu.gameIsPaused)
+        {
+            return;
+        }
 
         /*Enregistre l'input de tir seulement si le joueur possède au moins une balle*/
         if (amunitions > 0)
