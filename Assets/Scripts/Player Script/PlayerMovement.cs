@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,6 +7,83 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;//Créé une variable pour stocker le corps du joueur
+    public PlayerInput playerInputActions;
+    private Vector2 inputMovement;
+    private float speed = 5f;
+
+    public Animator animator;//Animation
+    public SpriteRenderer spriteRenderer;//image
+    public Transform firePoint;
+
+    public AudioSource audioSource;
+
+    
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();//Récupère le rigidBody du joueur et le stock dans la variable créée préalablement
+    }
+
+    private void Update()
+    {
+        Vector2 finalMovement = inputMovement * speed * Time.deltaTime;
+
+        rb.transform.Translate(finalMovement);
+
+
+        Debug.Log(finalMovement);
+
+        //Gestion des animations
+        animator.SetFloat("SpeedH", Mathf.Abs(finalMovement.x));
+        animator.SetFloat("SpeedV", Mathf.Abs(finalMovement.y));
+
+        //Valeur permettant un flip correct pour le clavier mais aussi pour la manette MARCHE PLUS
+        if (finalMovement.x >= 0.05)
+            Flip(1);
+        else if (finalMovement.x <= -0.05)
+            Flip(2);
+
+
+        //Permet de jouer le bruit des pas du joueur
+        if ((finalMovement.x != 0 || finalMovement.y != 0) && audioSource.isPlaying == false)
+        {
+            audioSource.Play();
+        }
+
+        //Limite du terrain, empeche le joueur de dépasse les coordonées spécifiées
+        transform.position = new Vector2(Mathf.Clamp(transform.position.x, -14f, 14f), Mathf.Clamp(transform.position.y, -14f, 14f));
+    }
+
+
+    //Permet de changer la direction du sprite du joueur, de l'arme et du firePoint
+    void Flip(int flip)
+    {
+        SpriteRenderer sp1 = gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>();
+        Transform sp2 = gameObject.transform.GetChild(0);
+
+        if (flip == 1)
+        {
+            spriteRenderer.flipX = true; //joueur
+            sp1.flipX = true; //arme
+            sp2.transform.localPosition = new Vector3(Mathf.Abs(sp2.transform.localPosition.x), sp2.transform.localPosition.y, sp2.transform.localPosition.z);//firePoint
+        }
+        else if (flip == 2)
+        {
+            spriteRenderer.flipX = false; //joueur
+            sp1.flipX = false; //arme
+            sp2.transform.localPosition = new Vector3(-Mathf.Abs(sp2.transform.localPosition.x), sp2.transform.localPosition.y, sp2.transform.localPosition.z);//firePoint
+        }
+    }
+
+    public void Walk(InputAction.CallbackContext ctx)
+    {
+        var inputValue = ctx.ReadValue<Vector2>(); //détecte la touche
+        inputMovement = new Vector2(inputValue.x, inputValue.y);
+    }
+
+
+    //------------------------------------------------essai 2 avec PlayerControls()--------------------------------------------------------------------------------
+    /*private Rigidbody2D rb;//Créé une variable pour stocker le corps du joueur
     private PlayerControls playerInputActions;
     private float speed = 5f;
 
@@ -73,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
             sp1.flipX = false; //arme
             sp2.transform.localPosition = new Vector3(-Mathf.Abs(sp2.transform.localPosition.x), sp2.transform.localPosition.y, sp2.transform.localPosition.z);//firePoint
         }
-    }
+    }*/
 
 
 
