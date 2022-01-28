@@ -229,6 +229,14 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
             {
                 action.RemoveBindingOverride(bindingIndex);
             }
+
+            //AJOUT PROBLEME SAMYAM
+            if (SwapResetBindings(action, bindingIndex))
+            {
+                UpdateBindingDisplay();
+                return;
+            }
+
             UpdateBindingDisplay();
         }
 
@@ -289,6 +297,16 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
                         action.Enable();
                         m_RebindOverlay?.SetActive(false);
                         m_RebindStopEvent?.Invoke(this, operation);
+
+                        //vérifie si la touche actuelle a déjà été assignée ailleurs
+                        if (CheckDuplicateBindings(action, bindingIndex, allCompositeParts))
+                        {
+                            action.RemoveBindingOverride(bindingIndex);
+                            CleanUp();
+                            PerformInteractiveRebind(action, bindingIndex, allCompositeParts);
+                            return;
+                        }
+
                         UpdateBindingDisplay();
                         CleanUp();
 
@@ -327,6 +345,86 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
 
             m_RebindOperation.Start();
         }
+
+
+
+
+        //fonction : vérifie si la touche actuelle a déjà été assignée ailleurs
+        private bool CheckDuplicateBindings(InputAction action, int bindingIndex, bool allCompositeParts = false)
+        {
+            InputBinding newBinding = action.bindings[bindingIndex]; //nouvelle touche
+            //pour chaque nouvelle touche, on parcours la liste des index des autres touches déjà bindée pour vérifier que la 
+            //nouvelle n'est pas déjà utilisée
+            foreach (InputBinding binding in action.actionMap.bindings)
+            {
+                //si l'action actuelle est bien celle qu'on veut rebind (Move, Jump, etc.)
+                if (binding.action == newBinding.action)
+                {
+                    continue;
+                }
+                //mais si cette acton contient déjà la touche qu'on veut ajouter
+                if (binding.effectivePath == newBinding.effectivePath)
+                {
+                    //message d'erreur
+                    Debug.Log("Duplicate binding found: " + newBinding.effectivePath);
+                    return true;
+                }
+            }
+            //permet de changer l'ordre des touches dans les rebinding à plusieurs touches (ex : Move --> Z/Q/S/D) pas très utile dans le jeu
+            if (allCompositeParts)
+            {
+                for (int i = 1; i < bindingIndex; i++)
+                {
+                    if (action.bindings[i].effectivePath == newBinding.effectivePath)
+                    {
+                        Debug.Log("Duplicate binding found: " + newBinding.effectivePath);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        //AJOUT PROBLEME SAMYAM
+        /// <summary>
+        /// Check for duplicate rebindings when the binding is going to be set to default.
+        /// </summary>
+        /// <param name="action">InputAction we are resetting.</param>
+        /// <param name="bindingIndex">Current index of the control we are rebinding.</param>
+        /// <returns></returns>
+        private bool SwapResetBindings(InputAction action, int bindingIndex)
+        {
+            // Cache a reference to the current binding.
+            InputBinding newBinding = action.bindings[bindingIndex];
+            // Check all of the bindings in the current action map to make sure there are no duplicates.
+            for (int i = 0; i < action.actionMap.bindings.Count; ++i)
+            {
+                InputBinding binding = action.actionMap.bindings[i];
+                if (binding.action == newBinding.action)
+                {
+                    continue;
+                }
+                if (binding.effectivePath == newBinding.path)
+                {
+                    Debug.Log("Duplicate binding found for reset to default: " + newBinding.effectivePath);
+                    // Swap the two actions.
+                    action.actionMap.FindAction(binding.action).ApplyBindingOverride(i, newBinding.overridePath);
+                    action.RemoveBindingOverride(bindingIndex);
+                    return true;
+                }
+            }
+            return false;
+        }
+
+
+
+
+
+
+
+
+
+
 
         protected void OnEnable()
         {
@@ -433,6 +531,14 @@ namespace UnityEngine.InputSystem.Samples.RebindUI
         }
 
         #endif
+
+
+        //AJOUT POUR ETRE SURE DU LANCEMENT DES FONCTIONS
+        private void Start()
+        {
+            UpdateActionLabel();
+            UpdateBindingDisplay();
+        }
 
         private void UpdateActionLabel()
         {
