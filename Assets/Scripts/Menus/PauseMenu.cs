@@ -57,6 +57,7 @@ public class PauseMenu : MonoBehaviour
 
     public void OpenSettingsWindow()
     {
+        GetComponent<RebindSaveLoad>().Load();
         settingsWindow.SetActive(true);
         audio.Play();
     }
@@ -65,6 +66,7 @@ public class PauseMenu : MonoBehaviour
     {
         settingsWindow.SetActive(false);
         audio.Play();
+        GetComponent<RebindSaveLoad>().Save();
     }
 
     public void LoadMainMenu()

@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
+
 public class RebindSaveLoad : MonoBehaviour
 {
 
@@ -12,17 +14,20 @@ public class RebindSaveLoad : MonoBehaviour
 /// and `InputActionMap.ApplyBindingOverride()` APIs.
 /// </summary>
 
-    [SerializeField] private InputActionAsset _inputActionAsset;
+    [SerializeField] private InputActionAsset inputActionAsset;
 
     private void Awake()
     {
+        //inputActionAsset = InputActionAsset.FromJson("basic");
         Load();
+       
     }
 
     public void Save()
     {
+        Debug.Log("RSL Save");
         // We loop through our action maps and save all the rebinds if there are any
-        foreach (var actionMap in _inputActionAsset.actionMaps)
+        foreach (var actionMap in inputActionAsset.actionMaps)
         {
             foreach (var binding in actionMap.bindings)
             {
@@ -38,8 +43,9 @@ public class RebindSaveLoad : MonoBehaviour
 
     public void Load()
     {
+        Debug.Log("RSL Load");
         // We loop through each action map and apply rebinds if they exist in our player prefs
-        foreach (var actionMap in _inputActionAsset.actionMaps)
+        foreach (var actionMap in inputActionAsset.actionMaps)
         {
             var bindings = actionMap.bindings;
             for (int i = 0; i < bindings.Count; i++)
