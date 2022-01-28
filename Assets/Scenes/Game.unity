@@ -687,6 +687,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1164967537207488875, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 7652522580990179824}
+    - target: {fileID: 1164967537207488875, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CloseSettingsWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967537207488875, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: PauseMenu, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 1164967537750554926, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
