@@ -800,6 +800,7 @@ GameObject:
   - component: {fileID: 992389189}
   - component: {fileID: 992389194}
   - component: {fileID: 992389195}
+  - component: {fileID: 992389196}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1016,6 +1017,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inputActions: {fileID: -944628639613478452, guid: 0d9718ff46eace84081b81215c820701, type: 3}
+--- !u!114 &992389196
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 992389188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bda56964feeb7b8418be69715971fe84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputActionAsset: {fileID: -944628639613478452, guid: 0d9718ff46eace84081b81215c820701, type: 3}
 --- !u!1 &1141349906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1499,9 +1513,45 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 992389189}
+    - target: {fileID: 1164967537750554926, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967537750554926, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967537750554926, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967537912095138, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967537912095138, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967537912095138, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967538068879398, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967538068879398, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1164967538099075092, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
       propertyPath: m_Name
       value: SettingsWindow
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967538099075092, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1164967538099075099, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
       propertyPath: m_Pivot.x
@@ -1591,5 +1641,13 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 992389195}
+    - target: {fileID: 1164967539056925396, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1164967539056925396, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
