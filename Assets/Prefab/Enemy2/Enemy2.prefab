@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   vie: 2
+  animator: {fileID: 3027514770252374459}
 --- !u!95 &3027514770252374459
 Animator:
   serializedVersion: 3

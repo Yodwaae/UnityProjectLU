@@ -8,12 +8,12 @@ public class ResetAllBindings : MonoBehaviour
 
     public void ResetBindings()
     {
+        GetComponent<RebindSaveLoad>().Load();
         foreach (InputActionMap map in inputActions.actionMaps)
         {
             map.RemoveAllBindingOverrides();
             GetComponent<RebindSaveLoad>().Save();
         }
         PlayerPrefs.DeleteKey("rebinds");
-        GetComponent<RebindSaveLoad>().Save();
     }
 }

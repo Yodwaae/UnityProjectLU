@@ -9,10 +9,11 @@ public class EnemyHealth : MonoBehaviour
     private Interface UI;
     private GameObject gManager;//Créer la référence au GameManager
     private static int nbrKillEnemy;
+    public Animator animator;
+
+    //public Sprite spriteDegat;
     //private SpawnEnemy scoreGame;//Créer la référence pour modifier le score jr
-   
-
-
+    
 
     private void Start()
     {
@@ -28,6 +29,11 @@ public class EnemyHealth : MonoBehaviour
     }
     private void Update()
     {
+        if (vie == 1)
+        {
+            //change l'animation de l'ennemi en reprennant celle de l'ennemi 1 sans l'armure
+            animator.SetBool("OneLife", true);
+        }
         if (vie <= 0)//Si l'ennemi n'a plus de vie
         {
             //Potentiellement une anim ?
