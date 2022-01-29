@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -4.1, y: -6173.604}
-  m_SizeDelta: {x: 1618.61, y: 11160}
+  m_AnchoredPosition: {x: -4.1, y: -6281.3}
+  m_SizeDelta: {x: 1618.61, y: 11376}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &566521393
 MonoBehaviour:
@@ -198,12 +198,12 @@ MonoBehaviour:
     :\r</size>\n<i>Personnage - Ennemis  - Allie - Sol\r\nTitres - Interface \r</i>\n\n<size=95>Irinaprimorochka
     (KingPNG) :</size>\n<i>bullet\r\r</i>\n\nUnknown - <i>Pistolet\r\r</i>\nUnknown
     - <i>Fusil a pompe\r\r</i>\nUnknown - <i>Fusil d'assault\r\r</i>\nUnknown - <i>Fusil
-    mitrailleur \r\r</i>\nUnknown - <i>Impacte de balle\r\r</i>\n\n\n<b><size=120>
-    - POLICE D'ECRITURE\r -\r </size></b>\t\r\n<size=95>Joseph Dawson :</size>\n<i>Cute
-    Letters\r</i>\n\n\r\n<b><size=120> - MUSIQUES\r -\r </size></b>\n<size=95>Tom
-    Day</size> - <i>Who We Want To Be\r</i>\n<size=95>Ryini Beats</size> - <i>Alternative
-    Rock Beat\r</i>\n<size=95>Wisdom</size> - <i>BVG x m\xF8ndberg\r</i>\nremix :
-    Manon Bonnot\r\n\r\n\n<b><size=120>- SONS -</size></b>\r\nhttps://opengameart.org\r\n\n<size=95>CosmicD
+    mitrailleur \r\r</i>\nUnknown - <i>Impacte de balle\r\r</i>\nUnknown - <i>Water
+    Drop\r\r</i>\nUnknown - <i>Water Drop\r\r 12</i>\n\n\n<b><size=120> - POLICE
+    D'ECRITURE\r -\r </size></b>\t\r\n<size=95>Joseph Dawson :</size>\n<i>Cute Letters\r</i>\n\n\r\n<b><size=120>
+    - MUSIQUES\r -\r </size></b>\n<size=95>Tom Day</size> - <i>Who We Want To Be\r</i>\n<size=95>Ryini
+    Beats</size> - <i>Alternative Rock Beat\r</i>\n<size=95>Wisdom</size> - <i>BVG
+    x m\xF8ndberg\r</i>\nremix : Manon Bonnot\r\n\r\n\n<b><size=120>- SONS -</size></b>\r\nhttps://opengameart.org\r\n\n<size=95>CosmicD
     :</size>\n<i>Epic Amulet Item\r</i>\n\n<size=95>SpringySpringo :</size>\n<i>gunreload1
     - assaultriflereload1 - \nshotguncock</i>\n\n<size=95>Michael Klier :</size>\n<i>Futuristic
     SMG Single Shot\r</i>\n\n<size=95>Nicole Marie T :</size>\n<i>Light Switch Click
@@ -480,8 +480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -5876.86}
-  m_SizeDelta: {x: 0, y: 11753.71}
+  m_AnchoredPosition: {x: 0, y: -5984.5786}
+  m_SizeDelta: {x: 0, y: 11969.15}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1825821266
 Animator:
