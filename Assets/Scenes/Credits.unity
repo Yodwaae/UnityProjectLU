@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: -4.1, y: -5910.5}
-  m_SizeDelta: {x: 1618.61, y: 10634}
+  m_AnchoredPosition: {x: -4.1, y: -6173.604}
+  m_SizeDelta: {x: 1618.61, y: 11160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &566521393
 MonoBehaviour:
@@ -212,10 +212,11 @@ MonoBehaviour:
     : Manon Bonnot\r\n\n\n<b><size=120>- SCRIPTS -</size></b>\n<size=95>alxcyl (GitHub)
     :</size>\n<i>RebingSaveLoad.cs</i>\n\t\t\t\t\n\n\r<b><size=120>- INSPIRATION
     -</size></b>\n<size=95>Upopa Games :\n</size><i>Hopeless: La Caverne Noire</i>\n\n\n\n\n<b><size=130>-
-    Retrouvez nous sur nos reseaux sociaux -</size></b>\n\n<b><size=115>Manon Bonnot
-    :</size></b>\n<size=95><b>@firrowmb</b> - Instagram\r\n<b>Firrowmb</b> - Deviantart\r\n<b>Firrow</b>
-    - GitHub\r\n<b>Manon Bonnot</b> - Linkedin\r</size>\n\t\r\n<b><size=115>Lucas
-    Spitz-Drevet :</size>\r</b>\n<size=95><b>Yodwaae</b> - GitHub\r\n<b>Lucas Spitz-Drevet</b>
+    Retrouvez nous sur nos reseaux sociaux -</size></b>\r\n\r\n<b><size=115>Manon
+    Bonnot :</size></b>\r\n<size=95><b>@firrowmb</b> - Instagram\r\n<b>Firrowmb</b>
+    - Deviantart\r\n<b>Firrow</b> - GitHub\r\n<b>FirrowMB</b> - itch.io\r\n<b>Manon
+    Bonnot</b> - Linkedin\r\n</size>\r\n\t\r\n<b><size=115>Lucas Spitz-Drevet :</size>\r\n</b>\r\n<size=95><b>Yodwaae</b>
+    - GitHub\r\n<b>Yodwaae/Lucas SPITZ DREVET</b> - itch.io\r\n<b>Lucas Spitz-Drevet</b>
     - Linkedin</size>\n\n\n\n\n\n\n\n\nMerci d'avoir joue a notre jeu !\n\t      
     \t\n\t\t\t\t\t\t   <size=70>Lucas et Manon</size>"
 --- !u!222 &566521394
@@ -479,8 +480,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: -5613.827}
-  m_SizeDelta: {x: 0, y: 11227.64}
+  m_AnchoredPosition: {x: 0, y: -5876.86}
+  m_SizeDelta: {x: 0, y: 11753.71}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1825821266
 Animator:

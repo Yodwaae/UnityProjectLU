@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    public string levelToLoad;
+    //public string levelToLoad;
     public GameObject settingsWindow;
 
     private new AudioSource audio;
@@ -18,7 +18,7 @@ public class MainMenu : MonoBehaviour
     public void StartGame()
     {
         audio.Play();
-        SceneManager.LoadScene(levelToLoad);
+        SceneManager.LoadScene(4);
     }
 
     public void SettingsGame()
@@ -38,7 +38,7 @@ public class MainMenu : MonoBehaviour
     public void Credit()
     {
         audio.Play();
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(3);
     }
 
     public void QuitGame()
