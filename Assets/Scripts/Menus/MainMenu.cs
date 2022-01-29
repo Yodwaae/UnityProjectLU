@@ -28,13 +28,17 @@ public class MainMenu : MonoBehaviour
         settingsWindow.SetActive(true);
     }
 
-
-   
     public void CloseSettingsGame()
     {
         audio.Play();
         settingsWindow.SetActive(false);
         GetComponent<RebindSaveLoad>().Save();
+    }
+
+    public void Credit()
+    {
+        audio.Play();
+        SceneManager.LoadScene(1);
     }
 
     public void QuitGame()

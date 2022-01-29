@@ -25,7 +25,6 @@ public class RebindSaveLoad : MonoBehaviour
 
     public void Save()
     {
-        Debug.Log("RSL Save");
         // We loop through our action maps and save all the rebinds if there are any
         foreach (var actionMap in inputActionAsset.actionMaps)
         {
@@ -43,7 +42,6 @@ public class RebindSaveLoad : MonoBehaviour
 
     public void Load()
     {
-        Debug.Log("RSL Load");
         // We loop through each action map and apply rebinds if they exist in our player prefs
         foreach (var actionMap in inputActionAsset.actionMaps)
         {
