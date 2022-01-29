@@ -16,6 +16,9 @@ public class Health : MonoBehaviour
     private int currentHealth = 5;//Créer la variable de vie du joueur
     public HealthBar healthBar;
 
+    public AudioSource damage;
+    public AudioSource lifePlus;
+
     private void Awake()
     {
         allySpawner = gManager.GetComponent<SpawnAllies>();
@@ -32,6 +35,7 @@ public class Health : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")//Si la collision est un ennemi
         {
+            damage.Play();
             currentHealth --;//Perd un point de vie
             healthBar.SetHealth(currentHealth); //fait diminuer la barre de vie
 
@@ -48,6 +52,7 @@ public class Health : MonoBehaviour
         {
             if(currentHealth < 10) //pour éviter que la vie soit supérieur à la barre de vie
             {
+                lifePlus.Play();
                 currentHealth++;//Gagne un point de vie
                 healthBar.SetHealth(currentHealth);//fait augmenter la barre de vie
             }
