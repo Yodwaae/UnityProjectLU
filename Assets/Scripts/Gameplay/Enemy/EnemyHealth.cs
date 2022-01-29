@@ -14,7 +14,6 @@ public class EnemyHealth : MonoBehaviour
     //public Sprite spriteDegat;
     //private SpawnEnemy scoreGame;//Créer la référence pour modifier le score jr
     
-
     private void Start()
     {
         UI = GameObject.FindGameObjectWithTag("Interface").GetComponent<Interface>();
