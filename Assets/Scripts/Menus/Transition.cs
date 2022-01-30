@@ -21,8 +21,11 @@ public class Transition : MonoBehaviour
 
     IEnumerator LoadGame()
     {
+        //animation du chargement
         transition.SetTrigger("Start");
+        //attentque l'animation se fasse
         yield return new WaitForSeconds(transitionTime);
+        //charge la scène du jeu
         SceneManager.LoadScene(1);
     }
 }

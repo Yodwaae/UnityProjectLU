@@ -9,18 +9,15 @@ public class SpawnAllies : MonoBehaviour
     private float timeA; //temps entre l'apparation des alliés
 
     private Health playerHealth;//Crée la référence au script Health du joueur
-    private GameObject[] allies;//Déclare la liste des alliés à spawner
-    public GameObject player; //Référence au joueur
-    public GameObject Ally1;//Référence à l'allié 1
-    public GameObject Ally2;//Référence à l'allié 2
+    private GameObject[] allies;//Déclare la liste des alliés à spawner (il y avait 2 types d'alliés avant)
+    public GameObject player; //Référence au joueur 
+    public GameObject Ally1;//Référence à l'allié
 
     // Start is called before the first frame update
     void Start()
     {
         timeA = 2.5f;
         playerHealth = player.GetComponent<Health>();
-        //Crée une liste d'allié avec un répartition de base de 50% Ally1 et 50% Ally2
-        //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally2, Ally2, Ally2 };
         allies = new GameObject[] { Ally1 };
         StartCoroutine(SpawnAnAlly());//Lance le spawn d'allié pour la première fois
     }
@@ -29,29 +26,21 @@ public class SpawnAllies : MonoBehaviour
     {
         if (playerHealth.getCurrentHealth() < 3)
         {
-            //Modifie la liste d'allié avec un répartition de base de 50% Ally1 et 50% Ally2
-            //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally2, Ally2, Ally2 };
             timeA = 2f;//Change le délaire entre les spawns à 3s
         }
         //Valeur de vie arbitraire, si le score atteint XX change les caractéristiques du spawner
         else if (playerHealth.getCurrentHealth() >= 3 && playerHealth.getCurrentHealth() < 5) 
         {
-            //Modifie la liste d'alliés avec un répartition de 66% Ally1 et 33% Ally2
-            //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally2, Ally2 };
             timeA = 3f;//Change le délai entre les spawns à 3s
         }
         //Valeur de vie arbitraire, si le score atteint XX change les caractéristiques du spawner
         else if (playerHealth.getCurrentHealth() >= 5 && playerHealth.getCurrentHealth() < 10)
         {
-            //Modifie la liste d'alliés avec un répartition de 84% Ally1 et 16% Ally2
-            //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally1, Ally2 };
             timeA = 4f;//Change le délai entre les spawns à 4s
         }
         //Valeur de vie arbitraire, si le score atteint XX change les caractéristiques du spawner
         else if (playerHealth.getCurrentHealth() > 10) 
         {
-            //Modifie la liste d'alliés avec un répartition de 100% Ally1 et 0% Ally2
-            //allies = new GameObject[] { Ally1, Ally1, Ally1, Ally1, Ally1, Ally1 };
             timeA = 5f;//Change le délai entre les spawns à 5s
         }
     }
@@ -60,8 +49,8 @@ public class SpawnAllies : MonoBehaviour
     IEnumerator SpawnAnAlly()
     {
         Vector2 spawnPos = player.transform.position; //Récupère la position du joueur
-        /*Choisis une coordonée dans un cercle autour du joueur, multiplié par spawnRadius pour que 
-         l'allié n'apparaisse pas au contact du joueur*/
+        /*Choisis une coordonnée dans un cercle autour du joueur, multipliée par spawnRadius pour que 
+        l'allié n'apparaisse pas au contact du joueur*/
         spawnPos += Random.insideUnitCircle.normalized * spawnRadius;
 
         /*Fait apparaitre un allié choisis aléatoirement dans la liste,
@@ -73,7 +62,7 @@ public class SpawnAllies : MonoBehaviour
     }
 
     /*Méthode qui sert de tampon évitant que la coroutine SpawnAnEnnemy tourne en continue
-     permettant ainsi de changer les valeurs des variables utiliser dans la coroutine 
+    permettant ainsi de changer les valeurs des variables utilisées dans la coroutine 
     pendant le laps de temps durant lequel elle est à l'arrêt*/
     private void BufferAlly()
     {

@@ -9,7 +9,7 @@ public class Shooting : MonoBehaviour
     public Transform firePoint;//Référence au firePoint (point de départ de la balle)
     public GameObject bullet;//Référence à l'objet balle
 
-    public PlayerInput playerInputActions;
+    public PlayerInput playerInputActions; //référence l'InputPlayer 
     private float input;
 
     /*Crée la variable qui stock le délai entre les tirs de l'arme,
@@ -22,6 +22,7 @@ public class Shooting : MonoBehaviour
     public MunitionBar munitionBar;
     //private Transform weaponChild;
 
+    //Chargement de la source audio et des différents sons de tir
     public AudioSource audioSource;
     public AudioClip fire1;
     public AudioClip fire2;
@@ -34,7 +35,7 @@ public class Shooting : MonoBehaviour
         weaponEquipped = 0;//( 0 = arme de base, 1 = fusil d'assaut, 2 = fusil à pompe et 3 = mitrailleuse)
         fireRate = 0.4f;//0.4 pour l'arme de base, XX pour le fusil d'assaut, XX pour le fusil à pompe, XX pour la mitrailleuse
         bulletSpeed = 8f;//Initialise bulletSpeed
-        amunitions = 100;//Initialise le nb de balles du joueur (attention, correspond à la décrémentation de la bar de munition
+        amunitions = 100;//Initialise le nbr de balles du joueur (attention, correspond à la décrémentation de la bar de munition)
         munitionBar.SetMaxMunition(amunitions);//initialise la bar de munition
     }
 
@@ -50,7 +51,7 @@ public class Shooting : MonoBehaviour
 
     void Shoot(GameObject bulletToFire, Transform firePoint, Vector3 offsetp)//Fonction appelée lors de l'input de tir
     {  
-        /*Crée une instance de balle et la range dans une variable, afin de la modifier après*/
+        /*Créer une instance de balle et la range dans une variable, afin de la modifier après*/
         GameObject bulletInst = Instantiate(bullet, firePoint.position + offsetp, firePoint.rotation);
         //Récupère le corps de la balle  et le range dans une variable afin de le modifier après
         Rigidbody2D rb = bulletInst.GetComponent<Rigidbody2D>();
@@ -72,8 +73,8 @@ public class Shooting : MonoBehaviour
     {
         //tire une balle
         Shoot(bullet, firePoint.transform, new Vector3(0,0,0));
-        SoundFire(fire1);
-        Debug.Log("Pistolet classique : " + amunitions);
+        SoundFire(fire1);//joue le son de tir correspondant à l'arme utilisée
+        //Debug.Log("Pistolet classique : " + amunitions);
         amunitions -= 4;//décremente les munitions de l'arme
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
     }
@@ -85,19 +86,19 @@ public class Shooting : MonoBehaviour
         {
             //yield return new WaitForSeconds(0.1f);
             Shoot(bullet, firePoint.transform,new Vector3(0, 0, 0));
-            SoundFire(fire3);
+            SoundFire(fire3);//joue le son de tir correspondant à l'arme utilisée
 
             yield return new WaitForSeconds(0.1f);
             Shoot(bullet, firePoint.transform, new Vector3(.2f, 0, 0));
-            SoundFire(fire3);
+            SoundFire(fire3);//joue le son de tir correspondant à l'arme utilisée
 
             yield return new WaitForSeconds(0.1f);
             Shoot(bullet, firePoint.transform,new Vector3(-.2f, 0, 0));
-            SoundFire(fire3);
+            SoundFire(fire3);//joue le son de tir correspondant à l'arme utilisée
         }
 
         StartCoroutine(TimeDelay());
-        Debug.Log("Fusil d'assaut : " + amunitions);
+        //Debug.Log("Fusil d'assaut : " + amunitions);
         amunitions -= 8;//décrémente les munitions de l'arme
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
     }
@@ -109,9 +110,9 @@ public class Shooting : MonoBehaviour
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
         Shoot(bullet, firePoint.transform, new Vector3(0, 0, 0));
-        SoundFire(fire2);
+        SoundFire(fire2);//joue le son de tir correspondant à l'arme utilisée
 
-        Debug.Log("Fusil à pompe : " + amunitions);
+        //Debug.Log("Fusil à pompe : " + amunitions);
         amunitions -= 12;//décrémente les munitions de l'arme
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
     }
@@ -120,13 +121,12 @@ public class Shooting : MonoBehaviour
     {
         //Tire une balle avec un spread random (entre -.2f et .2f)
         Shoot(bullet, firePoint.transform, new Vector3(Random.Range(-.2f, .2f), 0, 0));
-        SoundFire(fire3);
-        Debug.Log("Mitrailleuse : " + amunitions);
+        SoundFire(fire3);//joue le son de tir correspondant à l'arme utilisée
+        //Debug.Log("Mitrailleuse : " + amunitions);
         amunitions -= 4;//décrémente les munitions de l'arme
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
     }
 
-    //Changement de couleur TEMPORAIRE pour TEST
     public void changeWeapon(float bSpd, float fRate, int weapon, int amun, Sprite weaponSprite, Color weaponColor)
     {
         bulletSpeed = bSpd;
@@ -134,15 +134,17 @@ public class Shooting : MonoBehaviour
         weaponEquipped = weapon;
         amunitions = amun;
         munitionBar.SetMunition(amunitions);//MAJ de la barre de munition
-        gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = weaponSprite;
+        gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().sprite = weaponSprite;//prend le sprite de l'arme
         gameObject.transform.GetChild(1).GetComponent<SpriteRenderer>().color = weaponColor;//Changement de couleur TEMPORAIRE pour TEST
     }
 
+    //fonction pour jouer le son
     public void SoundFire(AudioClip audioFire)
     {
         audioSource.PlayOneShot(audioFire);
     }
 
+    //fonction de tir (lié au InputPlayer)
     public void Fire(InputAction.CallbackContext ctx)
     {
         input = ctx.ReadValue<float>();
@@ -165,7 +167,7 @@ public class Shooting : MonoBehaviour
                 //if (Input.GetButtonDown("Fire1") && Time.time > fireDelay)
                 if (input == 1 && Time.time > fireDelay)
                 {
-                    /*Time.time = temps actuel + fireRate = délai (en seconde) entre deux tir
+                    /*Time.time = temps actuel + fireRate = délai (en seconde) entre deux tirs
                     fireDelay = temps à partir duquel sera autorisé le prochain coup de feu*/
                     fireDelay = Time.time + fireRate;
                     if (weaponEquipped == 0) ShootWP1(); //Si arme basique équipée appelle la fonction de tir 1
@@ -183,7 +185,7 @@ public class Shooting : MonoBehaviour
                     /*Time.time = temps actuel + fireRate = délai (en seconde) entre deux tir
                     fireDelay = temps à partir duquel sera autorisé le prochain coup de feu*/
                     fireDelay = Time.time + fireRate;
-                    ShootWP4();//Apelle la fonction de tir 4
+                    ShootWP4();//Appelle la fonction de tir 4
                 }
             }
         }

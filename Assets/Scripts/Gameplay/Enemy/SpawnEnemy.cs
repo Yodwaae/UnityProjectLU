@@ -53,8 +53,8 @@ public class SpawnEnemy : MonoBehaviour
     IEnumerator SpawnAnEnemy()
     {
         Vector2 spawnPos = player.transform.position; //Récupère la position du joueur
-        /*Choisis une coordonée dans un cercle autour du joueur, multiplié par spawnRadius pour que 
-         l'ennemi n'apparaisse pas au contact du joueur*/ //A REVOIR CAR NE MARCHE PAS TRES BIEN (IDEM POUR LES ALLIÉS)
+        /*Choisis une coordonnée dans un cercle autour du joueur, multipliée par spawnRadius pour que 
+        l'ennemi n'apparaisse pas au contact du joueur*/
         spawnPos += Random.insideUnitCircle.normalized * spawnRadius;
 
         //fait crier l'ennemi
@@ -66,7 +66,7 @@ public class SpawnEnemy : MonoBehaviour
     }
 
     /*Méthode qui sert de tampon évitant que la coroutine SpawnAnEnnemy tourne en continue
-     permettant ainsi de changer les valeurs des variables utilisées dans la coroutine 
+    permettant ainsi de changer les valeurs des variables utilisées dans la coroutine 
     pendant le laps de temps durant lequel elle est à l'arrêt*/
     private void BufferEnemy()
     {

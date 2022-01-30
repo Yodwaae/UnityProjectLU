@@ -10,8 +10,8 @@ public class ScreamEnemy : MonoBehaviour
 
     public void ScreamEnemies()
     {
-        tirage = Random.Range(0, 4);
+        tirage = Random.Range(0, 4); //nombre aléatoire entre 0 et 3
         audioSource.clip = screamPlaylist[tirage]; //joue la musique de la playlist choisie
-        audioSource.Play();
+        audioSource.Play();//joue le son
     }
 }

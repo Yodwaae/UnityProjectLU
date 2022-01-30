@@ -28,10 +28,12 @@ public class PauseMenu : MonoBehaviour
             audio.Play();
             if (gameIsPaused == true)
             {
+                //Redémarre le jeu
                 Resume();
             }
             else
             {
+                //Stoppe le jeu
                 Stopped();
             }
         }
@@ -41,7 +43,7 @@ public class PauseMenu : MonoBehaviour
     {
         //Mettre de quoi ne pas pouvoir tirer une balle
         pauseMenuUI.SetActive(true); //affiche l'écran de la pause
-        audio.Play();
+        audio.Play(); //joue le son de lampe des touches des menus
         Time.timeScale = 0; //arrêt du temps (le jeu ne se joue pas en fond)
         gameIsPaused = true; //Change le statut du jeu : en pause
     }
@@ -50,29 +52,29 @@ public class PauseMenu : MonoBehaviour
     {
         //problème avec ce bouton
         pauseMenuUI.SetActive(false); //n'affiche plus l'écran de la pause
-        audio.Play();
+        audio.Play(); //joue le son de lampe des touches des menus
         Time.timeScale = 1; //on redémarre le temps
         gameIsPaused = false; //Change le statut du jeu : se joue
     }
 
     public void OpenSettingsWindow()
     {
-        GetComponent<RebindSaveLoad>().Load();
-        settingsWindow.SetActive(true);
-        audio.Play();
+        GetComponent<RebindSaveLoad>().Load();//Appelle la fonction Load de script RebindSaveLoad pour charger les touches
+        settingsWindow.SetActive(true);//affiche l'écran des options
+        audio.Play(); //joue le son de lampe des touches des menus
     }
 
     public void CloseSettingsWindow()
     {
-        settingsWindow.SetActive(false);
-        audio.Play();
-        GetComponent<RebindSaveLoad>().Save();
+        settingsWindow.SetActive(false);//n'affiche plus l'écran des options
+        audio.Play(); //joue le son de lampe des touches des menus
+        GetComponent<RebindSaveLoad>().Save();//Appelle la fonction Save de script RebindSaveLoad pour save les nouvelles touches
     }
 
     public void LoadMainMenu()
     {
         Resume(); //pour éviter que la prochaine partie qu'on relance soit en état de pause
         SceneManager.LoadScene(0); //on utilise l'index de la scène à charger plutôt que son nom car la scène MainMenu se trouve avant le game dans le build
-        audio.Play();
+        audio.Play(); //joue le son de lampe des touches des menus
     }
 }

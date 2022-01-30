@@ -7,7 +7,7 @@ using UnityEngine.InputSystem;
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody2D rb;//Créé une variable pour stocker le corps du joueur
-    public PlayerInput playerInputActions;
+    public PlayerInput playerInputActions;//référence l'InputPlayer 
     private Vector2 inputMovement;
     private float speed = 5f;
 
@@ -41,7 +41,7 @@ public class PlayerMovement : MonoBehaviour
             Flip(2);
 
 
-        //Permet de jouer le bruit des pas du joueur
+        //Permet de jouer le bruit des pas du joueur quand il se déplace
         if ((finalMovement.x != 0 || finalMovement.y != 0) && audioSource.isPlaying == false)
         {
             audioSource.Play();
@@ -72,6 +72,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    //Fonction de déplacement (utilisée par l'InputPlayer)
     public void Walk(InputAction.CallbackContext ctx)
     {
         var inputValue = ctx.ReadValue<Vector2>(); //détecte la touche

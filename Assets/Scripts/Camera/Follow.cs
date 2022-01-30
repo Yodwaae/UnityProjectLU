@@ -9,11 +9,9 @@ public class Follow : MonoBehaviour
 
     private void Awake()
     {
-
+        //Ancien essai
         //float orthoSize = ground.bounds.size.x * Screen.height / Screen.width * 0.25f;
         //Camera.main.orthographicSize = orthoSize;
-
-
 
         //Trouve l'objet joueur et récupère son composant Transform
         playerPos = GameObject.FindGameObjectWithTag("Player").transform;
@@ -28,7 +26,7 @@ public class Follow : MonoBehaviour
         transform.position = new Vector3(playerPos.transform.position.x, playerPos.transform.position.y, -10) ;
         float ratio = (cam.orthographicSize * cam.scaledPixelWidth) / cam.scaledPixelHeight;
         /*Limite du terrain, permet de décentrer la camera du joueur quand il arrive au bord du terrain
-         evitant que la camera filme du vide qui ne fait pas partie de l'espace de jeu*/
+         évitant que la camera filme du vide qui ne fait pas partie de l'espace de jeu*/
         transform.position = new Vector3(Mathf.Clamp(transform.position.x,-15 + Camera.main.orthographicSize* cam.aspect, 15 - Camera.main.orthographicSize * cam.aspect), Mathf.Clamp(transform.position.y, -15 + Camera.main.orthographicSize, 15 - Camera.main.orthographicSize), -10);
     }
 }

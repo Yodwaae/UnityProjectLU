@@ -41,7 +41,7 @@ public class SettingsMenu : MonoBehaviour
 
     public void Start()
     {
-        //Paramètre de résolution de l'écran du joueur
+        //Paramètres de résolution de l'écran du joueur
         //permet de ne pas avoir plusieurs fois les mêmes résolutions
         resolutions = Screen.resolutions.Select(Resolution => new Resolution { width = Resolution.width, height = Resolution.height }).Distinct().ToArray();
         resolutionsDropdown.ClearOptions();

@@ -9,6 +9,7 @@ public class AllyHealth : MonoBehaviour
 
     public void Awake()
     {
+        //récupère l'interface
         UI = GameObject.FindGameObjectWithTag("Interface").GetComponent<Interface>();
     }
     void OnCollisionEnter2D(Collision2D collision)//Se déclenche quand la balle touche quelque chose

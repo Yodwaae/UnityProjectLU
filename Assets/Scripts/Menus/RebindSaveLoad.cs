@@ -3,16 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-
+//CE SCRIPT N'EST PAS DE NOUS. IL VIENT D'UN AUTRE DÉVELOPPEUR CAR AYANT UNE VERSION DE UNITY TROP ANCIENNE
+//LE SCRIPT DE SAUVEGARDE DES BINDINGS N'EXISTE PAS
+//MALGRÉ CE SCRIPT, NOS TOUCHES RESET NE MARCHENT PAS
 
 public class RebindSaveLoad : MonoBehaviour
 {
 
-/// <summary>
-/// Very crude implementation of a rebind save/load system.
-/// The important part here are the `InputActionMap.bindings`,`InputBindings.overridePath`,
-/// and `InputActionMap.ApplyBindingOverride()` APIs.
-/// </summary>
+    /// <summary>
+    /// Very crude implementation of a rebind save/load system.
+    /// The important part here are the `InputActionMap.bindings`,`InputBindings.overridePath`,
+    /// and `InputActionMap.ApplyBindingOverride()` APIs.
+    /// </summary>
 
     [SerializeField] private InputActionAsset inputActionAsset;
 
@@ -20,7 +22,6 @@ public class RebindSaveLoad : MonoBehaviour
     {
         //inputActionAsset = InputActionAsset.FromJson("basic");
         Load();
-       
     }
 
     public void Save()

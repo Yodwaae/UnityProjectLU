@@ -37,7 +37,7 @@ public class Health : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")//Si la collision est un ennemi
         {
-            damage.Play();
+            damage.Play();//joue le son de coup
             currentHealth --;//Perd un point de vie
             healthBar.SetHealth(currentHealth); //fait diminuer la barre de vie
 
@@ -54,9 +54,10 @@ public class Health : MonoBehaviour
         {
             if (currentHealth < 10) //pour éviter que la vie soit supérieur à la barre de vie
             {
-                lifePlus.Play();
+                lifePlus.Play();//joue le son de récupération de vie
                 currentHealth++;//Gagne un point de vie
                 healthBar.SetHealth(currentHealth);//fait augmenter la barre de vie
+
                 //augmente la taille du halo lorsque le joueur a touché un allié
                 lightPlayer.pointLightOuterRadius += 1;
                 lightPlayer.pointLightInnerRadius += 1;
