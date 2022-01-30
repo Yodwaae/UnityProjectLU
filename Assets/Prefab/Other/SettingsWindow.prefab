@@ -2659,7 +2659,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Esc
+  m_Text: j
 --- !u!1 &1164967537821339860
 GameObject:
   m_ObjectHideFlags: 0
@@ -3956,6 +3956,8 @@ GameObject:
   - component: {fileID: 1164967538099075096}
   - component: {fileID: 1164967538099075097}
   - component: {fileID: 1164967538099075098}
+  - component: {fileID: 7055214695222088491}
+  - component: {fileID: 7804467974107497472}
   m_Layer: 5
   m_Name: SettingsWindow
   m_TagString: Untagged
@@ -4049,6 +4051,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: fe7148ffa5d670b4394e71b07c324c27, type: 2}
   resolutionsDropdown: {fileID: 1164967537657101650}
+--- !u!114 &7055214695222088491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164967538099075092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025443959af18aa4aafba1bf8daf0aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 0d9718ff46eace84081b81215c820701, type: 3}
+--- !u!114 &7804467974107497472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1164967538099075092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c6c86046729cc2a42adad1dd504cc823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActionAsset: {fileID: -944628639613478452, guid: 0d9718ff46eace84081b81215c820701, type: 3}
 --- !u!1 &1164967538100602457
 GameObject:
   m_ObjectHideFlags: 0
@@ -6845,7 +6873,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 7055214695222088491}
         m_TargetAssemblyTypeName: ResetAllBindings, Assembly-CSharp
         m_MethodName: ResetBindings
         m_Mode: 1

@@ -14,13 +14,15 @@ public class Health : MonoBehaviour
     public TimeSpan gameTime;
 
     private int currentHealth = 5;//Créer la variable de vie du joueur
-    public HealthBar healthBar;
+    public HealthBar healthBar; //barre de vie interface
 
+    //audios
     public AudioSource damage;
     public AudioSource lifePlus;
 
     private void Awake()
     {
+        //récupère le script Spawn Allies
         allySpawner = gManager.GetComponent<SpawnAllies>();
     }
 
@@ -50,7 +52,7 @@ public class Health : MonoBehaviour
         }
         else if (collision.gameObject.tag == "Ally")//Si la collision est un allié simple
         {
-            if(currentHealth < 10) //pour éviter que la vie soit supérieur à la barre de vie
+            if (currentHealth < 10) //pour éviter que la vie soit supérieur à la barre de vie
             {
                 lifePlus.Play();
                 currentHealth++;//Gagne un point de vie
