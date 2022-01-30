@@ -953,7 +953,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 605ea8efed846a848a976bf41e3bd8a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelToLoad: Game
   settingsWindow: {fileID: 1769558455}
 --- !u!114 &992389190
 MonoBehaviour:
@@ -1582,6 +1581,19 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1164967538099075099, guid: b7f8807a838dcc742a9d2e99876a7c6c, type: 3}
   m_PrefabInstance: {fileID: 1164967538484373923}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1769558457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1769558455}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 025443959af18aa4aafba1bf8daf0aac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputActions: {fileID: -944628639613478452, guid: 0d9718ff46eace84081b81215c820701, type: 3}
 --- !u!1 &1900962991
 GameObject:
   m_ObjectHideFlags: 0

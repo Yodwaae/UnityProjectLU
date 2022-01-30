@@ -55,13 +55,13 @@ public class Health : MonoBehaviour
                 lifePlus.Play();
                 currentHealth++;//Gagne un point de vie
                 healthBar.SetHealth(currentHealth);//fait augmenter la barre de vie
+                //augmente la taille du halo lorsque le joueur a touché un allié
+                lightPlayer.pointLightOuterRadius += 1;
+                lightPlayer.pointLightInnerRadius += 1;
             }
 
             Destroy(collision.gameObject);//détruit l'allié
-            allySpawner.UpdateSpawnerA();//Apelle l'update Spawner quand le joueur gagne de la vie plutôt quà chaque frame
-            //augmente la taille du halo lorsque le joueur a touché un allié
-            lightPlayer.pointLightOuterRadius += 1;
-            lightPlayer.pointLightInnerRadius += 1;
+            allySpawner.UpdateSpawnerA();//Appelle l'update Spawner quand le joueur gagne de la vie plutôt qu'à chaque frame
         }
 
     }
